@@ -78,7 +78,6 @@ export default function RsvpForm() {
   return (
     <div className="rsvp-card">
       <header className="rsvp-head">
-        <p className="rsvp-eyebrow">RSVP</p>
         <h2 className="rsvp-title">
           Vens celebrar <em>connosco?</em>
         </h2>

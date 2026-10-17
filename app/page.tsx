@@ -96,7 +96,7 @@ export default function HomePage() {
         </div>
         <div className="timeline">
           {schedule.map(([time, label], index) => (
-            <div className="timeline-row" key={time} data-reveal style={{ "--d": `${index * 0.12}s` } as React.CSSProperties}>
+            <div className="timeline-row" key={time} data-reveal={index % 2 === 0 ? "left" : "right"} style={{ "--d": `${index * 0.12}s` } as React.CSSProperties}>
               <time>{time}</time>
               <span className="timeline-dot" aria-hidden="true" />
               <p>{label}</p>
@@ -123,10 +123,10 @@ export default function HomePage() {
           <p className="kicker">Alojamento</p>
           <h2>Precisas de ficar por Castro Verde?</h2>
           <p>
-            No RSVP podes indicar se precisas de alojamento. Assim conseguimos perceber quantos convidados
+            Na confirmação de presença podes indicar se precisas de alojamento. Assim conseguimos perceber quantos convidados
             necessitam de estadia e partilhar as opções mais adequadas mais perto da data.
           </p>
-          <a className="text-link" href="#rsvp">Indicar no RSVP →</a>
+          <a className="text-link" href="#rsvp">Indicar na confirmação →</a>
         </div>
       </section>
 
