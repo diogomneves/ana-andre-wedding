@@ -132,8 +132,6 @@ export default function HomePage() {
 
       <section className="section rsvp-section" id="rsvp">
         <div className="rsvp-box" data-reveal>
-          <p className="script-title">Esperamos por ti</p>
-          <h2>Confirma a tua presença</h2>
           <RsvpForm />
         </div>
       </section>

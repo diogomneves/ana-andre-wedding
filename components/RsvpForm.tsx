@@ -5,6 +5,8 @@ import { rsvpSchema } from "@/lib/rsvpSchema";
 
 type FieldErrors = { name?: string; guestCount?: string };
 
+const RSVP_DEADLINE = "14 de abril de 2027";
+
 export default function RsvpForm() {
   const [name, setName] = useState("");
   const [attendance, setAttendance] = useState<"yes" | "no">("yes");
@@ -75,6 +77,20 @@ export default function RsvpForm() {
 
   return (
     <div className="rsvp-card">
+      <header className="rsvp-head">
+        <p className="rsvp-eyebrow">RSVP</p>
+        <h2 className="rsvp-title">
+          Vens celebrar <em>connosco?</em>
+        </h2>
+        <p className="rsvp-deadline">Confirma, por favor, até {RSVP_DEADLINE}.</p>
+        <p className="rsvp-note">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M12 20.5s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.6a4.3 4.3 0 0 1 7.5 2.7c0 5.6-7.5 10.2-7.5 10.2Z" />
+          </svg>
+          <span>A tua resposta ajuda-nos a preparar tudo com carinho.</span>
+        </p>
+      </header>
+
       <form className="rsvp-form" onSubmit={onSubmit} noValidate>
         <label className={fieldErrors.name ? "field has-error" : "field"}>
           <span>Nome(s) <span className="required-mark">*</span></span>

@@ -1050,3 +1050,11 @@ body.intro-lock { overflow: hidden; }
   .reveal-ready [data-reveal="right"] { transform: translateX(34px); }
   .reveal-ready [data-reveal].in-view { opacity: 1; transform: none; }
 }
+
+.rsvp-head { margin-bottom: 34px; padding-bottom: 28px; border-bottom: 1px solid var(--line); }
+.rsvp-card .rsvp-eyebrow { margin: 0 0 18px; color: var(--olive-dark); font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; }
+.rsvp-card .rsvp-title { margin: 0; color: var(--ink); font-size: clamp(44px, 9vw, 68px); font-weight: 400; line-height: 1.04; letter-spacing: -.02em; }
+.rsvp-card .rsvp-title em { color: var(--olive); font-style: italic; }
+.rsvp-card .rsvp-deadline { margin: 20px 0 0; color: #4d5644; font-size: 18px; }
+.rsvp-card .rsvp-note { display: flex; align-items: center; gap: 12px; margin: 26px 0 0; color: var(--olive-dark); font-size: 16px; font-style: italic; }
+.rsvp-note svg { flex: none; color: var(--olive); }
