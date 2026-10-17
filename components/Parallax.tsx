@@ -1,28 +1,52 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 export default function Parallax() {
-  useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const progressRef = useRef<HTMLDivElement>(null);
 
-    const elements = Array.from(document.querySelectorAll<HTMLElement>("[data-parallax]"));
+  useEffect(() => {
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const parallaxElements = Array.from(document.querySelectorAll<HTMLElement>("[data-parallax]"));
+    const revealElements = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
     let frame = 0;
+    let observer: IntersectionObserver | undefined;
+
+    if (!reduced && revealElements.length) {
+      document.documentElement.classList.add("reveal-ready");
+      observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (!entry.isIntersecting) continue;
+            entry.target.classList.add("in-view");
+            observer?.unobserve(entry.target);
+          }
+        },
+        { threshold: 0.15, rootMargin: "0px 0px -8% 0px" },
+      );
+      revealElements.forEach((element) => observer?.observe(element));
+    }
 
     function update() {
       frame = 0;
+
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = scrollable > 0 ? Math.min(1, Math.max(0, window.scrollY / scrollable)) : 0;
+      progressRef.current?.style.setProperty("--progress", progress.toFixed(4));
+
+      if (reduced) return;
+
       const viewportCenter = window.innerHeight / 2;
       const strength = window.innerWidth < 700 ? 0.6 : 1;
 
-      for (const element of elements) {
+      for (const element of parallaxElements) {
         const rect = element.getBoundingClientRect();
         if (rect.bottom < -400 || rect.top > window.innerHeight + 400) continue;
 
         const speed = Number(element.dataset.parallax) || 0;
-        const offset = rect.top + rect.height / 2 - viewportCenter;
         const current = Number.parseFloat(element.style.getPropertyValue("--py")) || 0;
         // rect already includes the current translate; remove it to get the untranslated position
-        const base = offset - current;
+        const base = rect.top + rect.height / 2 - viewportCenter - current;
         element.style.setProperty("--py", `${(base * speed * strength).toFixed(1)}px`);
       }
     }
@@ -38,8 +62,10 @@ export default function Parallax() {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
       if (frame) cancelAnimationFrame(frame);
+      observer?.disconnect();
+      document.documentElement.classList.remove("reveal-ready");
     };
   }, []);
 
-  return null;
+  return <div className="scroll-progress" ref={progressRef} aria-hidden="true" />;
 }

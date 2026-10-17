@@ -55,14 +55,16 @@ export default function HomePage() {
       </section>
 
       <section className="section countdown-section" aria-labelledby="countdown-title">
-        <p className="kicker">Até ao grande dia</p>
-        <h2 id="countdown-title">Contagem decrescente</h2>
-        <Countdown target="2027-05-14T11:00:00+01:00" />
+        <div data-reveal>
+          <p className="kicker">Até ao grande dia</p>
+          <h2 id="countdown-title">Contagem decrescente</h2>
+          <Countdown target="2027-05-14T11:00:00+01:00" />
+        </div>
       </section>
 
       <section className="section intro-section">
         <div className="watercolor-band" data-parallax="0.2" aria-hidden="true" />
-        <div className="narrow" data-parallax="-0.04">
+        <div className="narrow" data-reveal data-parallax="-0.04">
           <p className="script-title">Queremos celebrar contigo</p>
           <p className="lead">
             É com enorme alegria que te convidamos a fazer parte deste dia. Entre a paisagem de Castro Verde,
@@ -72,14 +74,14 @@ export default function HomePage() {
       </section>
 
       <section className="section details-grid" id="detalhes">
-        <article className="paper-card" data-parallax="-0.03">
+        <article className="paper-card" data-reveal="left" data-parallax="-0.03">
           <p className="kicker">Cerimónia</p>
           <h2>11h00</h2>
           <p><strong>Castro Verde</strong></p>
           <p>A localização exata será atualizada no convite formal.</p>
           <a className="text-link" href="https://maps.google.com/?q=Castro+Verde+Portugal" target="_blank" rel="noreferrer">Abrir mapa ↗</a>
         </article>
-        <article className="paper-card" data-parallax="0.03">
+        <article className="paper-card" data-reveal="right" data-parallax="0.03">
           <p className="kicker">Celebração</p>
           <h2>Depois do “sim”</h2>
           <p>Seguimos juntos para o almoço, brindes, música e festa.</p>
@@ -88,13 +90,13 @@ export default function HomePage() {
       </section>
 
       <section className="section schedule-section">
-        <div className="section-heading">
+        <div className="section-heading" data-reveal>
           <p className="kicker">O nosso dia</p>
           <h2>Programa</h2>
         </div>
         <div className="timeline">
-          {schedule.map(([time, label]) => (
-            <div className="timeline-row" key={time}>
+          {schedule.map(([time, label], index) => (
+            <div className="timeline-row" key={time} data-reveal style={{ "--d": `${index * 0.12}s` } as React.CSSProperties}>
               <time>{time}</time>
               <span className="timeline-dot" aria-hidden="true" />
               <p>{label}</p>
@@ -104,7 +106,7 @@ export default function HomePage() {
       </section>
 
       <section className="section landscape-section">
-        <div className="landscape-copy" data-parallax="-0.08">
+        <div className="landscape-copy" data-reveal data-parallax="-0.08">
           <p className="kicker">No coração do Alentejo</p>
           <h2>Castro Verde</h2>
           <p>Um cenário tranquilo, aberto e luminoso — exatamente como imaginámos este dia.</p>
@@ -117,7 +119,7 @@ export default function HomePage() {
       </section>
 
       <section className="section accommodation-section" id="alojamento">
-        <div className="accommodation-card">
+        <div className="accommodation-card" data-reveal>
           <p className="kicker">Alojamento</p>
           <h2>Precisas de ficar por Castro Verde?</h2>
           <p>
@@ -129,7 +131,7 @@ export default function HomePage() {
       </section>
 
       <section className="section rsvp-section" id="rsvp">
-        <div className="rsvp-box">
+        <div className="rsvp-box" data-reveal>
           <p className="script-title">Esperamos por ti</p>
           <h2>Confirma a tua presença</h2>
           <RsvpForm />

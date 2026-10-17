@@ -19,6 +19,7 @@ export default function InvitationIntro() {
   function finishInvitation() {
     setVisible(false);
     document.body.classList.remove("intro-lock");
+    window.scrollTo(0, 0);
   }
 
   function openInvitation() {
