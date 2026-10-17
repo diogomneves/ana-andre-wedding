@@ -1058,3 +1058,8 @@ body.intro-lock { overflow: hidden; }
 .rsvp-card .rsvp-deadline { margin: 20px 0 0; color: #4d5644; font-size: 18px; }
 .rsvp-card .rsvp-note { display: flex; align-items: center; gap: 12px; margin: 26px 0 0; color: var(--olive-dark); font-size: 16px; font-style: italic; }
 .rsvp-note svg { flex: none; color: var(--olive); }
+
+.rsvp-card .button.primary { margin-top: 0; background: var(--olive); color: #fff; }
+.rsvp-card .button.primary:hover:not(:disabled) { background: var(--olive-dark); color: #fff; }
+.rsvp-card .button.primary:disabled { opacity: .7; cursor: progress; }
+.success-card .button.primary:hover { background: #fff; color: var(--olive-dark); }
