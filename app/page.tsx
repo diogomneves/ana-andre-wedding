@@ -1,5 +1,8 @@
+import BackgroundMusic from "@/components/BackgroundMusic";
+import Calendar from "@/components/Calendar";
 import Countdown from "@/components/Countdown";
 import InvitationIntro from "@/components/InvitationIntro";
+import PaperFilters from "@/components/PaperFilters";
 import Parallax from "@/components/Parallax";
 import RsvpForm from "@/components/RsvpForm";
 
@@ -14,6 +17,8 @@ const schedule = [
 export default function HomePage() {
   return (
     <main>
+      <PaperFilters />
+      <BackgroundMusic />
       <InvitationIntro />
       <Parallax />
 
@@ -60,6 +65,7 @@ export default function HomePage() {
           <h2 id="countdown-title">Contagem decrescente</h2>
           <Countdown target="2027-05-14T11:00:00+01:00" />
         </div>
+        <Calendar year={2027} month={5} day={14} time="11h00" />
       </section>
 
       <section className="section intro-section">
@@ -74,14 +80,14 @@ export default function HomePage() {
       </section>
 
       <section className="section details-grid" id="detalhes">
-        <article className="paper-card" data-reveal="left" data-parallax="-0.03">
+        <article className="paper-card paper" data-reveal="left" data-parallax="-0.03">
           <p className="kicker">Cerimónia</p>
           <h2>11h00</h2>
           <p><strong>Castro Verde</strong></p>
           <p>A localização exata será atualizada no convite formal.</p>
           <a className="text-link" href="https://maps.google.com/?q=Castro+Verde+Portugal" target="_blank" rel="noreferrer">Abrir mapa ↗</a>
         </article>
-        <article className="paper-card" data-reveal="right" data-parallax="0.03">
+        <article className="paper-card paper" data-reveal="right" data-parallax="0.03">
           <p className="kicker">Celebração</p>
           <h2>Depois do “sim”</h2>
           <p>Seguimos juntos para o almoço, brindes, música e festa.</p>
@@ -105,16 +111,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="section landscape-section">
-        <div className="landscape-copy" data-reveal data-parallax="-0.08">
-          <p className="kicker">No coração do Alentejo</p>
-          <h2>Castro Verde</h2>
-          <p>Um cenário tranquilo, aberto e luminoso — exatamente como imaginámos este dia.</p>
-        </div>
-        <div className="hills" aria-hidden="true">
-          <div className="hill hill-back" data-parallax="0.18" />
-          <div className="hill hill-mid" data-parallax="0.09" />
-          <div className="hill hill-front" data-parallax="0.02" />
+      <section className="section venue-section" id="local">
+        <div className="venue-photo" data-parallax="0.04" role="img" aria-label="Fotografia do local da cerimónia" />
+        <div className="venue-card paper" data-reveal>
+          <p className="kicker">Onde vai ser</p>
+          <h2>Monte Fernão Dias</h2>
+          <p>Castro Verde — um cenário tranquilo, aberto e luminoso, exatamente como imaginámos este dia.</p>
+          <a className="button primary" href="https://www.google.com/maps/search/?api=1&query=Monte+Fern%C3%A3o+Dias+Castro+Verde" target="_blank" rel="noreferrer">Como chegar</a>
         </div>
       </section>
 
@@ -133,6 +136,26 @@ export default function HomePage() {
       <section className="section rsvp-section" id="rsvp">
         <div className="rsvp-box" data-reveal>
           <RsvpForm />
+        </div>
+      </section>
+
+      <section className="closing" aria-label="Até breve">
+        <div className="closing-frame" data-reveal>
+          <div className="closing-photo" role="img" aria-label="Ana e André" />
+          <div className="closing-copy">
+            <p className="closing-kicker" style={{ "--i": 0 } as React.CSSProperties}>Mal podemos esperar</p>
+            <p className="closing-line" style={{ "--i": 1 } as React.CSSProperties}>
+              As melhores histórias<br />celebram-se <em>juntos.</em>
+            </p>
+            <span className="closing-ornament" style={{ "--i": 2 } as React.CSSProperties} aria-hidden="true">
+              <i />
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 20.5s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.6a4.3 4.3 0 0 1 7.5 2.7c0 5.6-7.5 10.2-7.5 10.2Z" /></svg>
+              <i />
+            </span>
+            <strong style={{ "--i": 3 } as React.CSSProperties}>Até breve</strong>
+            <span className="closing-names" style={{ "--i": 4 } as React.CSSProperties}>Ana &amp; André</span>
+            <span className="closing-date" style={{ "--i": 5 } as React.CSSProperties}>14 · 05 · 2027</span>
+          </div>
         </div>
       </section>
 

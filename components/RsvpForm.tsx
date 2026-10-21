@@ -76,8 +76,9 @@ export default function RsvpForm() {
   }
 
   return (
-    <div className="rsvp-card">
+    <div className="rsvp-card paper">
       <header className="rsvp-head">
+        <p className="rsvp-eyebrow">Uma carta de volta</p>
         <h2 className="rsvp-title">
           Vens celebrar <em>connosco?</em>
         </h2>
@@ -102,7 +103,7 @@ export default function RsvpForm() {
           <div className="choice-grid">
             <label className={attendance === "yes" ? "choice active" : "choice"}>
               <input type="radio" name="attendance" value="yes" checked={attendance === "yes"} onChange={() => setAttendance("yes")} />
-              <span>Sim, estaremos presentes</span>
+              <span>Sim, lá estaremos</span>
             </label>
             <label className={attendance === "no" ? "choice active" : "choice"}>
               <input type="radio" name="attendance" value="no" checked={attendance === "no"} onChange={() => setAttendance("no")} />
@@ -113,17 +114,15 @@ export default function RsvpForm() {
 
         {attendance === "yes" && (
           <>
-            <label className={fieldErrors.guestCount ? "field has-error" : "field"}>
+            <div className={fieldErrors.guestCount ? "field has-error" : "field"}>
               <span>Número de pessoas <span className="required-mark">*</span></span>
-              <input
-                type="number"
-                min={1}
-                max={10}
-                value={guestCount}
-                onChange={(event) => setGuestCount(Number(event.target.value))}
-              />
+              <div className="stepper">
+                <button type="button" aria-label="Menos uma pessoa" onClick={() => setGuestCount((value) => Math.max(1, value - 1))} disabled={guestCount <= 1}>−</button>
+                <output aria-live="polite">{guestCount}</output>
+                <button type="button" aria-label="Mais uma pessoa" onClick={() => setGuestCount((value) => Math.min(10, value + 1))} disabled={guestCount >= 10}>+</button>
+              </div>
               {fieldErrors.guestCount && <p className="field-error">{fieldErrors.guestCount}</p>}
-            </label>
+            </div>
 
             <fieldset>
               <legend>Precisam de alojamento?</legend>
