@@ -425,10 +425,12 @@ body.intro-lock { overflow: hidden; position: fixed; inset: 0; width: 100%; }
 @keyframes sealRipple { from { opacity: .9; transform: scale(1); } to { opacity: 0; transform: scale(3.2); } }
 
 .seal-half {
-  position: absolute; inset: 0;
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 2px; padding-bottom: 3%;
+  color: #8a6a24; font-size: 17px; font-weight: 700; line-height: 1; text-shadow: 0 1px 0 rgba(255,250,222,.8), 0 -1px 0 rgba(110,80,25,.25);
   background: url("/images/selo.png") center / 100% 100% no-repeat;
   transition: transform .9s cubic-bezier(.5,0,.3,1), opacity .9s ease;
 }
+.seal-half b { font-size: 12px; font-style: italic; font-weight: 400; }
 .seal-a { clip-path: inset(0 50% 0 0); }
 .seal-b { clip-path: inset(0 0 0 50%); }
 .seal-half::after {

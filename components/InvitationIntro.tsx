@@ -266,8 +266,8 @@ export default function InvitationIntro() {
           </span>
 
           <span className="gate-seal" aria-hidden="true">
-            <span className="seal-half seal-a"></span>
-            <span className="seal-half seal-b"></span>
+            <span className="seal-half seal-a">A<b>&amp;</b>A</span>
+            <span className="seal-half seal-b">A<b>&amp;</b>A</span>
           </span>
         </button>
         </div>
