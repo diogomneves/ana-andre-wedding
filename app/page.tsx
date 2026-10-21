@@ -37,7 +37,6 @@ export default function HomePage() {
           <h1>Ana <span>&amp;</span> André</h1>
           <p className="hero-text">Há dias que merecem ficar guardados para sempre.</p>
           <div className="hero-actions">
-            <a className="button primary" href="#rsvp">Confirmar presença</a>
             <a className="button ghost" href="/ana-andre-2027.ics" download>Adicionar ao calendário</a>
           </div>
         </div>

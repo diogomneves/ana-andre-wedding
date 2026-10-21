@@ -59,21 +59,31 @@ function along(segs: Seg[], perSeg: number, length: number, spread: number) {
   return out;
 }
 
-const WREATH: Seg[] = [
-  [[99, 196], [60, 190], [34, 160], [37, 126]],
-  [[37, 126], [40, 92], [62, 66], [99, 58]],
-];
-const WREATH_PATH = "M99 196 C60 190 34 160 37 126 C40 92 62 66 99 58";
-const wreathLeaves = along(WREATH, 8, 17, 42);
+const WREATH_SEG: Seg = [[76, 129], [50, 113], [28, 80], [19, 38]];
+const WREATH_PATH = "M76 129 C50 113 28 80 19 38";
+const wreathLeaves = (() => {
+  const out: { x: string; y: string; a: string; s: number; n: number }[] = [];
+  const steps = 8;
+  for (let i = 0; i < steps; i++) {
+    const t = 0.2 + (i / (steps - 1)) * 0.78;
+    const k = i / (steps - 1);
+    const { x, y, angle } = bezier(WREATH_SEG, t);
+    const len = 34 - 17 * k;
+    [-1, 1].forEach((side, j) => {
+      out.push({ x: x.toFixed(1), y: y.toFixed(1), a: (angle + side * 45).toFixed(1), s: len * (j ? 0.95 : 1), n: i * 2 + j });
+    });
+  }
+  const tip = bezier(WREATH_SEG, 1);
+  out.push({ x: tip.x.toFixed(1), y: tip.y.toFixed(1), a: tip.angle.toFixed(1), s: 17, n: 16 });
+  out.push({ x: "72", y: "134", a: "140", s: 26, n: 17 });
+  out.push({ x: "57", y: "123", a: "174", s: 37, n: 18 });
+  return out;
+})();
 const wreathOlives = [
-  { seg: 0, t: 0.28, side: 1 },
-  { seg: 0, t: 0.78, side: -1 },
-  { seg: 1, t: 0.25, side: 1 },
-  { seg: 1, t: 0.72, side: -1 },
-].map((o) => {
-  const { x, y, angle } = bezier(WREATH[o.seg], o.t);
-  return { x: x.toFixed(1), y: y.toFixed(1), a: (angle + o.side * 90).toFixed(1) };
-});
+  { x: 40, y: 76, sx: 33, sy: 76 },
+  { x: 25, y: 100, sx: 33, sy: 96 },
+  { x: 32.5, y: 108, sx: 40, sy: 106 },
+];
 
 const BRANCH: Seg[] = [
   [[-10, 14], [50, 22], [90, 50], [130, 80]],
@@ -92,28 +102,26 @@ const branchOlives = [
 });
 
 const LEAF = "M0 0 C4 -5 12 -5 17 0 C12 5 4 5 0 0Z";
+const SLIM_LEAF = "M0 0 C6 -3.4 18 -3.4 26 0 C18 3.4 6 3.4 0 0Z";
 
-function Wreath({ id }: { id: string }) {
+function Wreath() {
   return (
     <svg className="gate-wreath" viewBox="0 0 100 250" aria-hidden="true">
-      <defs>
-        <linearGradient id={`foil-${id}`} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#f6e6b0" />
-          <stop offset=".5" stopColor="#d6b266" />
-          <stop offset="1" stopColor="#a98433" />
-        </linearGradient>
-      </defs>
-      <path className="wreath-stem" d={WREATH_PATH} pathLength={1} fill="none" stroke={`url(#foil-${id})`} strokeWidth="1.6" strokeLinecap="round" />
+      <path className="wreath-stem" d={WREATH_PATH} pathLength={1} fill="none" stroke="#e6d6a2" strokeOpacity=".85" strokeWidth=".9" strokeLinecap="round" />
       {wreathLeaves.map((leaf) => (
-        <g key={leaf.n} transform={`translate(${leaf.x} ${leaf.y}) rotate(${leaf.a}) scale(${(leaf.s / 17).toFixed(2)})`}>
-          <path className="wreath-leaf" style={{ "--n": leaf.n } as React.CSSProperties} d={LEAF} fill={`url(#foil-${id})`} />
+        <g key={leaf.n} transform={`translate(${leaf.x} ${leaf.y}) rotate(${leaf.a}) scale(${(leaf.s / 26).toFixed(2)})`}>
+          <g className="wreath-leaf" style={{ "--n": leaf.n } as React.CSSProperties}>
+            <path d={SLIM_LEAF} fill="#eadfb4" fillOpacity=".5" stroke="#f1e6bd" strokeOpacity=".9" strokeWidth=".7" />
+            <path d="M1 0 L24 0" stroke="#f1e6bd" strokeOpacity=".8" strokeWidth=".5" />
+          </g>
         </g>
       ))}
       {wreathOlives.map((olive, index) => (
-        <g key={index} transform={`translate(${olive.x} ${olive.y}) rotate(${olive.a})`}>
-          <g className="wreath-leaf" style={{ "--n": 8 + index } as React.CSSProperties}>
-            <path d="M0 0 L6 0" stroke={`url(#foil-${id})`} strokeWidth="1" />
-            <ellipse cx="9.5" cy="0" rx="4.6" ry="3.2" fill={`url(#foil-${id})`} />
+        <g key={index}>
+          <g className="wreath-leaf" style={{ "--n": 19 + index } as React.CSSProperties}>
+            <path d={`M${olive.sx} ${olive.sy} L${olive.x} ${olive.y}`} stroke="#e6d6a2" strokeWidth=".7" />
+            <ellipse cx={olive.x} cy={olive.y + 3.6} rx="3.3" ry="4.6" fill="#d8c88c" stroke="#f1e6bd" strokeWidth=".6" />
+            <ellipse cx={olive.x - 1} cy={olive.y + 2} rx="1" ry="1.5" fill="#fff6d6" fillOpacity=".7" />
           </g>
         </g>
       ))}
@@ -243,11 +251,11 @@ export default function InvitationIntro() {
           </span>
 
           <span className="gate-panel gate-left" aria-hidden="true">
-            <Wreath id="l" />
+            <Wreath />
             <span className="gate-gloss" />
           </span>
           <span className="gate-panel gate-right" aria-hidden="true">
-            <Wreath id="r" />
+            <Wreath />
             <span className="gate-gloss" />
           </span>
 
@@ -258,8 +266,8 @@ export default function InvitationIntro() {
           </span>
 
           <span className="gate-seal" aria-hidden="true">
-            <span className="seal-half seal-a">A<b>&amp;</b>A</span>
-            <span className="seal-half seal-b">A<b>&amp;</b>A</span>
+            <span className="seal-half seal-a"></span>
+            <span className="seal-half seal-b"></span>
           </span>
         </button>
         </div>

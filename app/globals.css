@@ -271,23 +271,24 @@ button { cursor: pointer; }
 /* -------------------------------------------------------------------------- */
 /* Opening: gatefold doors + wax seal                                         */
 /* -------------------------------------------------------------------------- */
-body.intro-lock { overflow: hidden; }
+html:has(body.intro-lock) { overflow: hidden; overscroll-behavior: none; }
+body { overflow-x: clip; }
+body.intro-lock { overflow: hidden; position: fixed; inset: 0; width: 100%; }
 
 .gate-intro {
+  touch-action: none; overscroll-behavior: none;
   position: fixed;
   inset: 0;
   z-index: 100;
   display: grid;
   place-items: center;
   padding: 24px;
-  background-color: #fffdf8;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .55 0 0 0 0 .45 0 0 0 0 .34 .3 0 0 0 -.08'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"), url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='700' height='700'><filter id='c' x='0' y='0' width='100%' height='100%'><feTurbulence type='fractalNoise' baseFrequency='.014 .02' numOctaves='6' seed='7' stitchTiles='stitch' result='t'/><feDiffuseLighting in='t' lighting-color='%23ffffff' surfaceScale='4.2' result='l'><feDistantLight azimuth='45' elevation='55'/></feDiffuseLighting><feComponentTransfer in='l'><feFuncR type='linear' slope='.2' intercept='.82'/><feFuncG type='linear' slope='.2' intercept='.82'/><feFuncB type='linear' slope='.2' intercept='.82'/></feComponentTransfer></filter><rect width='100%' height='100%' filter='url(%23c)'/></svg>");
-  background-blend-mode: multiply, multiply;
+  background: #f1e9e2 url("/images/linho.jpg") center / cover no-repeat;
   overflow: hidden;
 }
 .gate-intro::before {
   content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: radial-gradient(ellipse at center, transparent 70%, rgba(160,125,90,.06) 100%);
+  background: none;
 }
 .gate-intro.is-opening { animation: gateFadeOut .9s ease 3.5s forwards; }
 @keyframes gateFadeOut { to { opacity: 0; visibility: hidden; } }
@@ -331,7 +332,7 @@ body.intro-lock { overflow: hidden; }
 .is-opening .gate-heading { opacity: 0; transform: translateY(-16px); }
 
 .gate-card {
-  position: relative; display: block; width: min(92vw, 480px, calc(70svh * 4 / 5)); aspect-ratio: 4 / 5;
+  position: relative; display: block; width: min(78vw, 400px, calc(58svh * 4 / 5)); aspect-ratio: 4 / 5;
   padding: 0; border: 0; background: none; cursor: pointer; perspective: 1400px;
   filter: drop-shadow(0 28px 36px rgba(52,69,31,.3));
   animation: gateFloat 5s ease-in-out infinite;
@@ -381,7 +382,7 @@ body.intro-lock { overflow: hidden; }
   background:
     repeating-linear-gradient(0deg, rgba(255,255,255,.05) 0 1px, transparent 1px 3px),
     repeating-linear-gradient(90deg, rgba(0,0,0,.035) 0 1px, transparent 1px 3px),
-    linear-gradient(160deg, #75855a, #64744a);
+    linear-gradient(160deg, #7f8e62, #728257);
   transition: transform 1.6s cubic-bezier(.65,.05,.25,1) .5s;
   backface-visibility: hidden;
   filter: url(#deckle);
@@ -391,8 +392,8 @@ body.intro-lock { overflow: hidden; }
 }
 .gate-right::after { background: linear-gradient(270deg, rgba(0,0,0,.5), transparent); }
 .is-opening .gate-panel::after { opacity: 1; }
-.gate-left { left: 0; transform-origin: left center; border-right: 1px solid rgba(0,0,0,.25); }
-.gate-right { right: 0; transform-origin: right center; border-left: 1px solid rgba(255,255,255,.12); }
+.gate-left { left: 0; transform-origin: left center; border-right: 1px solid rgba(0,0,0,.2); box-shadow: inset -2px 0 0 rgba(236,220,160,.55); }
+.gate-right { right: 0; transform-origin: right center; border-left: 1px solid rgba(0,0,0,.2); box-shadow: inset 2px 0 0 rgba(236,220,160,.55); }
 .is-opening .gate-left { transform: rotateY(-115deg); }
 .is-opening .gate-right { transform: rotateY(115deg); }
 
@@ -403,7 +404,7 @@ body.intro-lock { overflow: hidden; }
 }
 @keyframes gateGloss { 0% { background-position: 120% 0; } 60%, 100% { background-position: -80% 0; } }
 
-.gate-wreath { position: absolute; inset: 0; width: 100%; height: 100%; filter: drop-shadow(0 1px 1px rgba(40,50,20,.35)); }
+.gate-wreath { position: absolute; inset: 0; width: 100%; height: 100%; filter: drop-shadow(0 .5px .6px rgba(40,50,20,.3)); }
 .gate-right .gate-wreath { transform: scaleX(-1); }
 .wreath-stem { stroke-dasharray: 1; stroke-dashoffset: 1; animation: stemDraw 1.6s ease .3s forwards; }
 @keyframes stemDraw { to { stroke-dashoffset: 0; } }
@@ -411,7 +412,7 @@ body.intro-lock { overflow: hidden; }
 @keyframes leafGrow { from { opacity: 0; scale: 0; } to { opacity: 1; scale: 1; } }
 
 .gate-seal {
-  position: absolute; left: 50%; top: 50%; z-index: 3; width: 88px; height: 88px; margin: -44px 0 0 -44px;
+  position: absolute; left: 50%; top: 54%; z-index: 3; width: 70px; aspect-ratio: 552 / 512; margin: -32px 0 0 -35px;
   filter: drop-shadow(0 7px 8px rgba(0,0,0,.4));
   animation: gateSealPulse 2.4s ease-in-out infinite;
 }
@@ -424,24 +425,20 @@ body.intro-lock { overflow: hidden; }
 @keyframes sealRipple { from { opacity: .9; transform: scale(1); } to { opacity: 0; transform: scale(3.2); } }
 
 .seal-half {
-  position: absolute; inset: 0; display: grid; grid-auto-flow: column; place-items: center; gap: 1px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 28%, #f7e9b8, #dcbc72 55%, #b08a3a);
-  box-shadow: inset 0 0 0 5px rgba(255,255,255,.16), inset 0 0 0 6px rgba(120,88,30,.35), inset 0 0 0 11px rgba(255,255,255,.08), inset 0 -6px 10px rgba(110,80,25,.3);
-  color: #8a6a24; font-size: 22px; font-weight: 700; text-shadow: 0 1px 0 rgba(255,255,255,.4);
+  position: absolute; inset: 0;
+  background: url("/images/selo.png") center / 100% 100% no-repeat;
   transition: transform .9s cubic-bezier(.5,0,.3,1), opacity .9s ease;
 }
-.seal-half b { font-size: 17px; font-style: italic; }
 .seal-a { clip-path: inset(0 50% 0 0); }
 .seal-b { clip-path: inset(0 0 0 50%); }
 .seal-half::after {
-  content: ""; position: absolute; inset: 0; border-radius: inherit;
+  content: ""; position: absolute; inset: 0; -webkit-mask: url("/images/selo.png") center / 100% 100% no-repeat; mask: url("/images/selo.png") center / 100% 100% no-repeat;
   background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,.55) 50%, transparent 65%) -150% 0 / 250% 100% no-repeat;
   animation: sealShine 3.6s ease-in-out infinite;
 }
 @keyframes sealShine { 0% { background-position: 150% 0; } 45%, 100% { background-position: -150% 0; } }
-.is-opening .seal-a { transform: translate(-46px, 28px) rotate(-32deg); opacity: 0; }
-.is-opening .seal-b { transform: translate(46px, 34px) rotate(34deg); opacity: 0; }
+.is-opening .seal-a { transform: translate(-34px, 22px) rotate(-32deg); opacity: 0; }
+.is-opening .seal-b { transform: translate(34px, 26px) rotate(34deg); opacity: 0; }
 
 .gate-tilt {
   transform: rotateX(calc(var(--my, 0) * -9deg)) rotateY(calc(var(--mx, 0) * 12deg));
@@ -452,7 +449,7 @@ body.intro-lock { overflow: hidden; }
 
 .gate-beam {
   position: absolute; top: -30vmax; width: 26vmax; height: 170vmax; pointer-events: none; transform: rotate(24deg);
-  background: linear-gradient(90deg, transparent, rgba(255,246,214,.6), transparent); filter: blur(22px);
+  background: linear-gradient(90deg, transparent, rgba(255,250,235,.22), transparent); filter: blur(22px);
   animation: beamShift 14s ease-in-out infinite alternate;
 }
 .gate-beam-a { left: 8%; }
@@ -486,7 +483,7 @@ body.intro-lock { overflow: hidden; }
 @keyframes sealCall { from { opacity: .9; transform: scale(1); } to { opacity: 0; transform: scale(2.1); } }
 .is-opening .gate-seal::before { animation: none; opacity: 0; }
 
-.gate-burst { position: absolute; left: 50%; top: 50%; z-index: 4; pointer-events: none; }
+.gate-burst { position: absolute; left: 50%; top: 54%; z-index: 4; pointer-events: none; }
 .gate-burst i {
   position: absolute; left: -5px; top: -3px; width: 12px; height: 7px; border-radius: 100% 0 100% 0; background: #e6c66f; opacity: 0;
 }
@@ -834,3 +831,7 @@ body.intro-lock { overflow: hidden; }
 .music-toggle.is-playing { background: var(--olive); color: #fff; }
 body.intro-lock .music-toggle { display: none; }
 .music-player { position: fixed; left: -300px; bottom: 0; width: 200px; height: 200px; overflow: hidden; pointer-events: none; opacity: 0; }
+
+/* Vintage touch (apenas na carta de abertura) */
+.gate-photo { filter: sepia(.32) saturate(.92) contrast(1.03); }
+.gate-inside::before { background: #fcf2dc radial-gradient(circle at 50% 0, rgba(228, 201, 138, .35), transparent 60%); }
