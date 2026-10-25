@@ -34,141 +34,8 @@ const sparks = [
   { left: "50%", top: "5%", delay: "3.4s" },
 ];
 
-type Pt = [number, number];
-type Seg = [Pt, Pt, Pt, Pt];
-
-function bezier([p0, p1, p2, p3]: Seg, t: number) {
-  const u = 1 - t;
-  const x = u * u * u * p0[0] + 3 * u * u * t * p1[0] + 3 * u * t * t * p2[0] + t * t * t * p3[0];
-  const y = u * u * u * p0[1] + 3 * u * u * t * p1[1] + 3 * u * t * t * p2[1] + t * t * t * p3[1];
-  const dx = 3 * u * u * (p1[0] - p0[0]) + 6 * u * t * (p2[0] - p1[0]) + 3 * t * t * (p3[0] - p2[0]);
-  const dy = 3 * u * u * (p1[1] - p0[1]) + 6 * u * t * (p2[1] - p1[1]) + 3 * t * t * (p3[1] - p2[1]);
-  return { x, y, angle: (Math.atan2(dy, dx) * 180) / Math.PI };
-}
-
-function along(segs: Seg[], perSeg: number, length: number, spread: number) {
-  const out: { x: string; y: string; a: string; s: number; n: number }[] = [];
-  segs.forEach((seg, si) => {
-    for (let i = 0; i < perSeg; i++) {
-      const t = (i + 0.5) / perSeg;
-      const { x, y, angle } = bezier(seg, t);
-      const side = (si * perSeg + i) % 2 === 0 ? -1 : 1;
-      out.push({ x: x.toFixed(1), y: y.toFixed(1), a: (angle + side * spread).toFixed(1), s: length * (0.8 + 0.2 * Math.sin((si * perSeg + i) * 1.3 + 1)), n: si * perSeg + i });
-    }
-  });
-  return out;
-}
-
-const WREATH_SEG: Seg = [[76, 129], [50, 113], [28, 80], [19, 38]];
-const WREATH_PATH = "M76 129 C50 113 28 80 19 38";
-const wreathLeaves = (() => {
-  const out: { x: string; y: string; a: string; s: number; n: number }[] = [];
-  const steps = 8;
-  for (let i = 0; i < steps; i++) {
-    const t = 0.2 + (i / (steps - 1)) * 0.78;
-    const k = i / (steps - 1);
-    const { x, y, angle } = bezier(WREATH_SEG, t);
-    const len = 34 - 17 * k;
-    [-1, 1].forEach((side, j) => {
-      out.push({ x: x.toFixed(1), y: y.toFixed(1), a: (angle + side * 45).toFixed(1), s: len * (j ? 0.95 : 1), n: i * 2 + j });
-    });
-  }
-  const tip = bezier(WREATH_SEG, 1);
-  out.push({ x: tip.x.toFixed(1), y: tip.y.toFixed(1), a: tip.angle.toFixed(1), s: 17, n: 16 });
-  out.push({ x: "72", y: "134", a: "140", s: 26, n: 17 });
-  out.push({ x: "57", y: "123", a: "174", s: 37, n: 18 });
-  return out;
-})();
-const wreathOlives = [
-  { x: 40, y: 76, sx: 33, sy: 76 },
-  { x: 25, y: 100, sx: 33, sy: 96 },
-  { x: 32.5, y: 108, sx: 40, sy: 106 },
-];
-
-const BRANCH: Seg[] = [
-  [[-10, 14], [50, 22], [90, 50], [130, 80]],
-  [[130, 80], [170, 108], [205, 130], [250, 150]],
-];
-const BRANCH_PATH = "M-10 14 C50 22 90 50 130 80 C170 108 205 130 250 150";
-const branchLeaves = along(BRANCH, 6, 44, 38);
-const branchOlives = [
-  { seg: 0, t: 0.35, side: 1 },
-  { seg: 0, t: 0.6, side: 1 },
-  { seg: 0, t: 0.85, side: -1 },
-  { seg: 1, t: 0.3, side: -1 },
-].map((o) => {
-  const { x, y, angle } = bezier(BRANCH[o.seg], o.t);
-  return { x: x.toFixed(1), y: y.toFixed(1), a: (angle + o.side * 90).toFixed(1) };
-});
-
-const LEAF = "M0 0 C4 -5 12 -5 17 0 C12 5 4 5 0 0Z";
-const SLIM_LEAF = "M0 0 C6 -3.4 18 -3.4 26 0 C18 3.4 6 3.4 0 0Z";
-
-function Wreath() {
-  return (
-    <svg className="gate-wreath" viewBox="0 0 100 250" aria-hidden="true">
-      <path className="wreath-stem" d={WREATH_PATH} pathLength={1} fill="none" stroke="#e6d6a2" strokeOpacity=".85" strokeWidth=".9" strokeLinecap="round" />
-      {wreathLeaves.map((leaf) => (
-        <g key={leaf.n} transform={`translate(${leaf.x} ${leaf.y}) rotate(${leaf.a}) scale(${(leaf.s / 26).toFixed(2)})`}>
-          <g className="wreath-leaf" style={{ "--n": leaf.n } as React.CSSProperties}>
-            <path d={SLIM_LEAF} fill="#eadfb4" fillOpacity=".5" stroke="#f1e6bd" strokeOpacity=".9" strokeWidth=".7" />
-            <path d="M1 0 L24 0" stroke="#f1e6bd" strokeOpacity=".8" strokeWidth=".5" />
-          </g>
-        </g>
-      ))}
-      {wreathOlives.map((olive, index) => (
-        <g key={index}>
-          <g className="wreath-leaf" style={{ "--n": 19 + index } as React.CSSProperties}>
-            <path d={`M${olive.sx} ${olive.sy} L${olive.x} ${olive.y}`} stroke="#e6d6a2" strokeWidth=".7" />
-            <ellipse cx={olive.x} cy={olive.y + 3.6} rx="3.3" ry="4.6" fill="#d8c88c" stroke="#f1e6bd" strokeWidth=".6" />
-            <ellipse cx={olive.x - 1} cy={olive.y + 2} rx="1" ry="1.5" fill="#fff6d6" fillOpacity=".7" />
-          </g>
-        </g>
-      ))}
-    </svg>
-  );
-}
-
-function OliveBranch() {
-  return (
-    <svg viewBox="0 0 260 180" aria-hidden="true">
-      <path d={BRANCH_PATH} fill="none" stroke="#6b7338" strokeWidth="3" strokeLinecap="round" />
-      {branchLeaves.map((leaf) => (
-        <g key={leaf.n} transform={`translate(${leaf.x} ${leaf.y}) rotate(${leaf.a}) scale(${(leaf.s / 17).toFixed(2)})`}>
-          <path d={LEAF} fill={leaf.n % 2 ? "#97a46c" : "#7d8b52"} />
-          <path d="M0 0 L16 0" stroke="rgba(255,255,255,.35)" strokeWidth=".7" />
-        </g>
-      ))}
-      {branchOlives.map((olive, index) => (
-        <g key={index} transform={`translate(${olive.x} ${olive.y}) rotate(${olive.a})`}>
-          <path d="M0 0 L10 0" stroke="#6b7338" strokeWidth="1.6" />
-          <ellipse cx="17" cy="0" rx="8" ry="5.6" fill="#59602c" />
-          <ellipse cx="15" cy="-1.8" rx="3" ry="1.6" fill="rgba(255,255,255,.28)" />
-        </g>
-      ))}
-    </svg>
-  );
-}
-
-function Ribbon() {
-  return (
-    <svg viewBox="0 0 380 220" aria-hidden="true">
-      <defs>
-        <linearGradient id="satin" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#b9c5a0" />
-          <stop offset=".45" stopColor="#8d9c72" />
-          <stop offset=".6" stopColor="#c6d0b0" />
-          <stop offset="1" stopColor="#7e8d63" />
-        </linearGradient>
-      </defs>
-      <path d="M390 30 C300 40 250 110 160 135 C110 150 50 170 -10 225 L-10 175 C40 135 100 108 160 92 C230 72 290 -6 390 -14 Z" fill="url(#satin)" />
-      <path d="M390 4 C300 14 250 84 160 109 C110 124 50 144 -10 199" fill="none" stroke="rgba(255,255,255,.4)" strokeWidth="2" />
-    </svg>
-  );
-}
-
 export default function InvitationIntro() {
-  const [visible, setVisible] = useState(true);
+  const [done, setDone] = useState(false);
   const [opening, setOpening] = useState(false);
   const finishTimer = useRef<number | null>(null);
 
@@ -182,7 +49,7 @@ export default function InvitationIntro() {
   }, []);
 
   function finishInvitation() {
-    setVisible(false);
+    setDone(true);
     document.body.classList.remove("intro-lock");
     window.scrollTo(0, 0);
   }
@@ -204,15 +71,13 @@ export default function InvitationIntro() {
     finishTimer.current = window.setTimeout(finishInvitation, reducedMotion ? 450 : 4400);
   }
 
-  if (!visible) return null;
-
   return (
-    <div className={`gate-intro ${opening ? "is-opening" : ""}`} aria-label="Abrir convite de casamento" onPointerMove={onPointerMove}>
+    <div className={`gate-intro ${opening ? "is-opening" : ""} ${done ? "is-done" : ""}`} aria-label="Abrir convite de casamento" onPointerMove={onPointerMove}>
       <div className="gate-beam gate-beam-a" aria-hidden="true" />
       <div className="gate-beam gate-beam-b" aria-hidden="true" />
       <div className="gate-glow" aria-hidden="true" />
-      <div className="gate-branch" aria-hidden="true"><OliveBranch /></div>
-      <div className="gate-ribbon" aria-hidden="true"><Ribbon /></div>
+      <div className="gate-branch" aria-hidden="true" />
+      <div className="gate-ribbon" aria-hidden="true" />
       <div className="gate-dust" aria-hidden="true">
         {dust.map((mote, index) => (
           <i key={index} style={{ "--x": mote.x, "--s": mote.size, "--dur": mote.duration, "--delay": mote.delay } as React.CSSProperties} />
@@ -251,11 +116,9 @@ export default function InvitationIntro() {
           </span>
 
           <span className="gate-panel gate-left" aria-hidden="true">
-            <Wreath />
             <span className="gate-gloss" />
           </span>
           <span className="gate-panel gate-right" aria-hidden="true">
-            <Wreath />
             <span className="gate-gloss" />
           </span>
 
@@ -273,7 +136,7 @@ export default function InvitationIntro() {
         </div>
 
         <p className="gate-hint" aria-live="polite">
-          {opening ? "A abrir o nosso convite…" : "Toca no selo para abrir"}
+          {done ? "↓" : opening ? "A abrir o nosso convite…" : "Toca no selo para abrir"}
         </p>
       </div>
     </div>

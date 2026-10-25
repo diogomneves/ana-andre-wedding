@@ -22,59 +22,62 @@ export default function HomePage() {
       <InvitationIntro />
       <Parallax />
 
-      <section className="hero" id="inicio">
-        <div className="botanical botanical-left" data-parallax="0.22" aria-hidden="true">
-          <i /><i /><i /><i /><i /><i /><i />
+      <section className="section note-section" id="inicio">
+        <div className="note-paper" data-reveal>
+          <p className="note-kicker">Nós casamos</p>
+          <p className="note-line">Há dias que merecem<br />ficar guardados <em>para sempre.</em></p>
+          <span className="note-sign" aria-hidden="true">Ana &amp; André</span>
         </div>
-        <div className="botanical botanical-right" data-parallax="-0.18" aria-hidden="true">
-          <i /><i /><i /><i /><i /><i /><i />
-        </div>
-        <div className="hero-wash hero-wash-blue" data-parallax="0.3" aria-hidden="true" />
-        <div className="hero-wash hero-wash-gold" data-parallax="0.15" aria-hidden="true" />
+      </section>
 
-        <div className="hero-copy reveal" data-parallax="0.08">
-          <p className="eyebrow">14 maio 2027 · Castro Verde</p>
-          <h1>Ana <span>&amp;</span> André</h1>
-          <p className="hero-text">Há dias que merecem ficar guardados para sempre.</p>
-          <div className="hero-actions">
-            <a className="button ghost" href="/ana-andre-2027.ics" download>Adicionar ao calendário</a>
-          </div>
+      <section className="section photo-section">
+        <div className="photo-frame" data-reveal role="img" aria-label="Ana e André na praia ao pôr do sol">
+          <div className="photo-frame-pic" />
         </div>
+      </section>
 
-        <div className="hero-art reveal" data-parallax="-0.05" aria-hidden="true">
-          <div className="hero-ring ring-one" />
-          <div className="hero-ring ring-two" />
-          <div className="hero-date-card">
-            <span>save the date</span>
-            <strong>14</strong>
-            <small>maio · 2027</small>
-          </div>
-          <div className="hero-landscape">
-            <span className="landscape-layer landscape-sky" data-parallax="0.05" />
-            <span className="landscape-layer landscape-hill-a" data-parallax="0.1" />
-            <span className="landscape-layer landscape-hill-b" data-parallax="0.04" />
-            <span className="landscape-layer landscape-field" />
-          </div>
+      <section className="section save-section" aria-label="Guarda a data">
+        <div className="save-date" data-reveal>
+          <p className="save-kicker">Guarda a data</p>
+          <strong className="save-day">14</strong>
+          <span className="save-month">maio</span>
+          <span className="save-year">2027</span>
+          <p className="save-line">Há um dia<br /><em>que já é nosso.</em></p>
         </div>
       </section>
 
       <section className="section countdown-section" aria-labelledby="countdown-title">
-        <div data-reveal>
-          <p className="kicker">Até ao grande dia</p>
-          <h2 id="countdown-title">Contagem decrescente</h2>
-          <Countdown target="2027-05-14T11:00:00+01:00" />
-        </div>
         <Calendar year={2027} month={5} day={14} time="11h00" />
+        <div className="countdown-block" data-reveal>
+          <p className="countdown-caption" id="countdown-title">Cada vez falta menos</p>
+          <Countdown target="2027-05-14T11:00:00+01:00" />
+          <a className="button ghost calendar-add" href="/ana-andre-2027.ics" download>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M3 10h18M8 3v4M16 3v4" /></svg>
+            Adicionar ao calendário
+          </a>
+        </div>
+      </section>
+
+      <section className="section schedule-section">
+        <div className="section-heading" data-reveal>
+          <p className="kicker">O nosso dia</p>
+          <p className="script-title">Queremos celebrar contigo</p>
+        </div>
+        <div className="timeline">
+          {schedule.map(([time, label], index) => (
+            <div className="timeline-row" key={time} data-reveal={index % 2 === 0 ? "left" : "right"} style={{ "--d": `${index * 0.12}s` } as React.CSSProperties}>
+              <time>{time}</time>
+              <span className="timeline-dot" aria-hidden="true" />
+              <p>{label}</p>
+            </div>
+          ))}
+        </div>
       </section>
 
       <section className="section intro-section">
-        <div className="watercolor-band" data-parallax="0.2" aria-hidden="true" />
-        <div className="narrow" data-reveal data-parallax="-0.04">
-          <p className="script-title">Queremos celebrar contigo</p>
-          <p className="lead">
-            É com enorme alegria que te convidamos a fazer parte deste dia. Entre a paisagem de Castro Verde,
-            flores, abraços e muita festa, queremos criar memórias que fiquem para sempre.
-          </p>
+        <div className="narrow" data-reveal>
+          <p className="script-title">Entre flores e abraços</p>
+          <p className="lead">Castro Verde · 14 de maio de 2027</p>
         </div>
       </section>
 
@@ -92,22 +95,6 @@ export default function HomePage() {
           <p>Seguimos juntos para o almoço, brindes, música e festa.</p>
           <p className="muted">Mais informações serão adicionadas assim que estiverem fechadas.</p>
         </article>
-      </section>
-
-      <section className="section schedule-section">
-        <div className="section-heading" data-reveal>
-          <p className="kicker">O nosso dia</p>
-          <h2>Programa</h2>
-        </div>
-        <div className="timeline">
-          {schedule.map(([time, label], index) => (
-            <div className="timeline-row" key={time} data-reveal={index % 2 === 0 ? "left" : "right"} style={{ "--d": `${index * 0.12}s` } as React.CSSProperties}>
-              <time>{time}</time>
-              <span className="timeline-dot" aria-hidden="true" />
-              <p>{label}</p>
-            </div>
-          ))}
-        </div>
       </section>
 
       <section className="section venue-section" id="local">
