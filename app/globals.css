@@ -736,7 +736,7 @@ body.intro-lock { overflow: hidden; position: fixed; inset: 0; width: 100%; }
 .venue-section { display: grid; padding-bottom: clamp(60px, 8vw, 110px); background: #f8f5ea; }
 .venue-photo {
   width: min(100%, 980px); aspect-ratio: 21 / 9; margin: 0 auto;
-  background: url("/images/local.jpg") 45% center / cover no-repeat, linear-gradient(160deg, #b9cde1 0%, #e8dfae 55%, #7f9440 100%);
+  background: url("/images/fernao-dias.jpg") 40% 60% / cover no-repeat, linear-gradient(160deg, #b9cde1 0%, #e8dfae 55%, #7f9440 100%);
   box-shadow: var(--shadow);
 }
 .venue-card { width: min(92%, 560px); margin: -80px auto 0; padding: 40px 36px; text-align: center; z-index: 2; }
@@ -753,7 +753,7 @@ body.intro-lock { overflow: hidden; position: fixed; inset: 0; width: 100%; }
 
 .closing { padding: clamp(48px, 8vw, 110px) 16px; background: var(--cream); display: grid; justify-items: center; }
 .closing-frame { position: relative; width: min(100%, 560px); aspect-ratio: 3 / 4; overflow: hidden; box-shadow: 0 30px 70px rgba(40,50,25,.3); background: #1f3a66; color: #fff; }
-.closing-photo { position: absolute; inset: 0; background: url("/images/casal.jpg") center / cover no-repeat, linear-gradient(#7ea1c8, #cfe0ee 55%, #5d7a2c 56%, #34451f); transform-origin: 50% 70%; }
+.closing-photo { position: absolute; inset: 0; background: url("/images/arrabida.jpg") 62% 50% / cover no-repeat, linear-gradient(#7ea1c8, #cfe0ee 55%, #5d7a2c 56%, #34451f); transform-origin: 50% 70%; }
 .closing-photo { filter: brightness(.82) saturate(1.05); }
 .closing-frame::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(to bottom, rgba(12,28,55,.3) 0%, rgba(12,28,55,.5) 50%, rgba(10,20,10,.3) 100%); }
 .closing-copy { position: absolute; z-index: 2; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 8%; text-align: center; text-shadow: 0 2px 16px rgba(0,20,50,.55); }
@@ -837,3 +837,61 @@ body::before { content: ""; position: fixed; inset: 0; z-index: -1; background: 
 .photo-frame::after { content: ""; position: absolute; inset: 0; background: url("/images/moldura.png") center / 100% 100% no-repeat; pointer-events: none; }
 
 .schedule-section .section-heading { text-align: center; }
+
+.closing-copy { justify-content: flex-start; padding-top: 11%; }
+.closing-frame::after { background: linear-gradient(to bottom, rgba(12,28,55,.55) 0%, rgba(12,28,55,.3) 38%, rgba(10,20,10,0) 62%); }
+.rsvp-section { background: transparent; color: var(--ink); }
+.rsvp-section h2 { color: var(--ink); }
+.rsvp-section .script-title { color: var(--blue); }
+.church-art { width: min(64vw, 340px); aspect-ratio: 768 / 846; margin: 28px auto 0; background: url("/images/igreja.png") center / contain no-repeat; }
+.venue-card { margin-top: 0; }
+.intro-section { padding-top: clamp(50px, 8vw, 100px); }
+.celebration-photo { width: 100%; max-width: 460px; aspect-ratio: 4 / 3; margin: 0 auto 28px; position: relative; border-radius: 18px; background: url("/images/silhueta.jpg") 42% 40% / cover no-repeat; box-shadow: 0 16px 36px rgba(40,50,25,.28); }
+.venue-section { padding-bottom: clamp(120px, 18vw, 220px); }
+.venue-photo { margin-top: 0; }
+.venue-card { margin-top: -36px; }
+.details-grid { padding-bottom: clamp(80px, 12vw, 150px); }
+.celebration-photo { max-width: none; margin-bottom: 22px; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; padding: 26px 24px; color: #fff; text-shadow: 0 2px 14px rgba(0,0,0,.55); }
+.celebration-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,.45), rgba(0,0,0,0) 40%, rgba(0,0,0,0) 55%, rgba(0,0,0,.55)); pointer-events: none; }
+.celebration-photo h2, .celebration-photo p { position: relative; z-index: 1; margin: 0; color: #fff; }
+.celebration-photo h2 { text-align: center; font-size: clamp(30px, 4vw, 42px); }
+.celebration-photo p { max-width: 260px; text-align: left; font-size: 18px; line-height: 1.3; }
+.details-grid { grid-template-columns: minmax(0, 560px); justify-content: center; }
+.celebration-band { width: 100%; }
+.celebration-band .celebration-photo { width: 100%; max-width: none; aspect-ratio: auto; height: clamp(340px, 52vw, 600px); margin: 0; border-radius: 0; box-shadow: none; padding: clamp(28px, 5vw, 56px) clamp(22px, 6vw, 80px); background-position: 42% 40%; }
+.celebration-band .celebration-photo p { max-width: 320px; font-size: clamp(18px, 2vw, 24px); }
+.celebration-band { display: grid; justify-items: center; padding: 0 16px; }
+.celebration-band .celebration-photo { width: min(100%, 560px); height: auto; aspect-ratio: 4 / 3; padding: 26px 24px; border-radius: 0; box-shadow: 0 20px 50px rgba(88,82,59,.18); }
+.celebration-band .celebration-photo p { max-width: 260px; font-size: 18px; }
+.celebration-band { padding-bottom: clamp(100px, 14vw, 180px); }
+.celebration-band .celebration-photo { padding: 32px 28px 30px; text-shadow: 0 2px 18px rgba(0,0,0,.6); }
+.celebration-band .celebration-photo::after { background: linear-gradient(to bottom, rgba(10,14,22,.62), rgba(10,14,22,0) 42%, rgba(10,14,22,0) 52%, rgba(10,14,22,.72)); }
+.celebration-top { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; }
+.celebration-kicker { font: 700 11px Arial, Helvetica, sans-serif; letter-spacing: .34em; padding-left: .34em; text-transform: uppercase; color: #f3dc9c; }
+.celebration-band .celebration-photo h2 { font-size: clamp(36px, 6vw, 48px); font-weight: 400; line-height: 1.05; letter-spacing: .01em; }
+.celebration-band .celebration-photo h2 em { font-style: italic; color: #f3dc9c; }
+.celebration-band .celebration-photo p { padding-top: 14px; border-top: 1px solid rgba(243,220,156,.75); max-width: 240px; font-size: 19px; font-style: italic; line-height: 1.35; }
+.celebration-band .celebration-photo { border: 8px solid #fffdf8; background-clip: padding-box; outline: 1px solid rgba(192,152,63,.7); outline-offset: -1px; }
+.celebration-band { display: block; padding-left: 0; padding-right: 0; }
+.celebration-band .celebration-photo { width: 100%; max-width: none; height: clamp(360px, 56vw, 640px); aspect-ratio: auto; border: 0; outline: 0; box-shadow: none; background-clip: border-box; padding: clamp(32px, 5vw, 60px) clamp(24px, 7vw, 100px); }
+.celebration-band .celebration-photo p { max-width: 300px; }
+.venue-photo { aspect-ratio: 16 / 9; }
+.closing { padding: 0; display: block; }
+.closing-frame { width: 100%; max-width: none; aspect-ratio: auto; height: clamp(540px, 75vw, 780px); box-shadow: none; }
+.closing-photo { background-position: 62% 58%; }
+.rsvp-section { padding-bottom: clamp(100px, 14vw, 180px); }
+.closing-copy { justify-content: flex-end; padding: 0 8% clamp(28px, 5vw, 56px); }
+.closing-frame::after { background: linear-gradient(to bottom, rgba(12,28,55,0) 0%, rgba(12,28,55,0) 40%, rgba(10,16,10,.72) 100%); }
+.closing-top { justify-content: flex-start; padding: clamp(32px, 6vw, 64px) 8% 0; }
+.closing-bottom { justify-content: flex-end; padding: 0 8% clamp(28px, 5vw, 56px); }
+.closing-bottom strong { margin-top: 0 !important; }
+.closing-frame::after { background: linear-gradient(to bottom, rgba(12,28,55,.55) 0%, rgba(12,28,55,0) 36%, rgba(12,28,55,0) 55%, rgba(10,16,10,.72) 100%); }
+.back-to-top {
+  position: fixed; right: 18px; bottom: 22px; z-index: 110; width: 46px; height: 46px; display: grid; place-items: center; padding: 0;
+  border: 1px solid rgba(52,69,31,.25); border-radius: 50%; background: rgba(255,253,247,.92); color: var(--olive-dark);
+  cursor: pointer; box-shadow: 0 8px 20px rgba(0,0,0,.18);
+  opacity: 0; transform: translateY(12px); pointer-events: none; transition: opacity .3s ease, transform .3s ease, background .2s ease;
+}
+.back-to-top.is-visible { opacity: 1; transform: none; pointer-events: auto; }
+.back-to-top:hover { background: #fff; }
+body.intro-lock .back-to-top { display: none; }

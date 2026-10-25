@@ -1,4 +1,5 @@
 import BackgroundMusic from "@/components/BackgroundMusic";
+import BackToTop from "@/components/BackToTop";
 import Calendar from "@/components/Calendar";
 import Countdown from "@/components/Countdown";
 import InvitationIntro from "@/components/InvitationIntro";
@@ -19,6 +20,7 @@ export default function HomePage() {
     <main>
       <PaperFilters />
       <BackgroundMusic />
+      <BackToTop />
       <InvitationIntro />
       <Parallax />
 
@@ -77,7 +79,7 @@ export default function HomePage() {
       <section className="section intro-section">
         <div className="narrow" data-reveal>
           <p className="script-title">Entre flores e abraços</p>
-          <p className="lead">Castro Verde · 14 de maio de 2027</p>
+          <div className="church-art" role="img" aria-label="Desenho da igreja" />
         </div>
       </section>
 
@@ -89,33 +91,25 @@ export default function HomePage() {
           <p>A localização exata será atualizada no convite formal.</p>
           <a className="text-link" href="https://maps.google.com/?q=Castro+Verde+Portugal" target="_blank" rel="noreferrer">Abrir mapa ↗</a>
         </article>
-        <article className="paper-card paper" data-reveal="right" data-parallax="0.03">
-          <p className="kicker">Celebração</p>
-          <h2>Depois do “sim”</h2>
+      </section>
+
+      <section className="celebration-band">
+        <div className="celebration-photo">
+          <div className="celebration-top">
+            <span className="celebration-kicker">Celebração</span>
+            <h2>Depois do <em>“sim”</em></h2>
+          </div>
           <p>Seguimos juntos para o almoço, brindes, música e festa.</p>
-          <p className="muted">Mais informações serão adicionadas assim que estiverem fechadas.</p>
-        </article>
+        </div>
       </section>
 
       <section className="section venue-section" id="local">
-        <div className="venue-photo" data-parallax="0.04" role="img" aria-label="Fotografia do local da cerimónia" />
+        <div className="venue-photo" data-parallax="0.04" role="img" aria-label="Monte Fernão Dias" />
         <div className="venue-card paper" data-reveal>
           <p className="kicker">Onde vai ser</p>
           <h2>Monte Fernão Dias</h2>
           <p>Castro Verde — um cenário tranquilo, aberto e luminoso, exatamente como imaginámos este dia.</p>
           <a className="button primary" href="https://www.google.com/maps/search/?api=1&query=Monte+Fern%C3%A3o+Dias+Castro+Verde" target="_blank" rel="noreferrer">Como chegar</a>
-        </div>
-      </section>
-
-      <section className="section accommodation-section" id="alojamento">
-        <div className="accommodation-card" data-reveal>
-          <p className="kicker">Alojamento</p>
-          <h2>Precisas de ficar por Castro Verde?</h2>
-          <p>
-            Na confirmação de presença podes indicar se precisas de alojamento. Assim conseguimos perceber quantos convidados
-            necessitam de estadia e partilhar as opções mais adequadas mais perto da data.
-          </p>
-          <a className="text-link" href="#rsvp">Indicar na confirmação →</a>
         </div>
       </section>
 
@@ -128,7 +122,7 @@ export default function HomePage() {
       <section className="closing" aria-label="Até breve">
         <div className="closing-frame" data-reveal>
           <div className="closing-photo" role="img" aria-label="Ana e André" />
-          <div className="closing-copy">
+          <div className="closing-copy closing-top">
             <p className="closing-kicker" style={{ "--i": 0 } as React.CSSProperties}>Mal podemos esperar</p>
             <p className="closing-line" style={{ "--i": 1 } as React.CSSProperties}>
               As melhores histórias<br />celebram-se <em>juntos.</em>
@@ -138,17 +132,14 @@ export default function HomePage() {
               <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 20.5s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.6a4.3 4.3 0 0 1 7.5 2.7c0 5.6-7.5 10.2-7.5 10.2Z" /></svg>
               <i />
             </span>
+          </div>
+          <div className="closing-copy closing-bottom">
             <strong style={{ "--i": 3 } as React.CSSProperties}>Até breve</strong>
             <span className="closing-names" style={{ "--i": 4 } as React.CSSProperties}>Ana &amp; André</span>
             <span className="closing-date" style={{ "--i": 5 } as React.CSSProperties}>14 · 05 · 2027</span>
           </div>
         </div>
       </section>
-
-      <footer className="footer">
-        <p className="footer-names">Ana & André</p>
-        <p>14 · 05 · 2027 · Castro Verde</p>
-      </footer>
     </main>
   );
 }
