@@ -103,7 +103,7 @@ export default function InvitationIntro() {
           <span className="gate-rays" aria-hidden="true" />
 
           <span className="gate-inside" aria-hidden="true">
-            <small style={{ "--i": 0 } as React.CSSProperties}>Nós casamos</small>
+            <small style={{ "--i": 0 } as React.CSSProperties}>Vamos casar</small>
             <span className="gate-photo" style={{ "--i": 1 } as React.CSSProperties} />
             <strong style={{ "--i": 2 } as React.CSSProperties}>
               Ana <em>&amp;</em> André
@@ -129,8 +129,8 @@ export default function InvitationIntro() {
           </span>
 
           <span className="gate-seal" aria-hidden="true">
-            <span className="seal-half seal-a">A<b>&amp;</b>A</span>
-            <span className="seal-half seal-b">A<b>&amp;</b>A</span>
+            <span className="seal-half seal-a" />
+            <span className="seal-half seal-b" />
           </span>
         </button>
         </div>
