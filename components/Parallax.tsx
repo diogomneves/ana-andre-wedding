@@ -45,23 +45,29 @@ export default function Parallax() {
       const viewportCenter = window.innerHeight / 2;
       const strength = window.innerWidth < 700 ? 0.6 : 1;
 
+      const vh = window.innerHeight;
+      const spWrites: [HTMLElement, string][] = [];
       for (const element of scrollElements) {
         const rect = element.getBoundingClientRect();
-        if (rect.bottom < -200 || rect.top > window.innerHeight + 200) continue;
-        const sp = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
-        element.style.setProperty("--sp", Math.min(1, Math.max(0, sp)).toFixed(4));
+        if (rect.bottom < -200 || rect.top > vh + 200) continue;
+        const sp = (vh - rect.top) / (vh + rect.height);
+        spWrites.push([element, Math.min(1, Math.max(0, sp)).toFixed(3)]);
       }
 
+      const pyWrites: [HTMLElement, string][] = [];
       for (const element of parallaxElements) {
         const rect = element.getBoundingClientRect();
-        if (rect.bottom < -400 || rect.top > window.innerHeight + 400) continue;
+        if (rect.bottom < -400 || rect.top > vh + 400) continue;
 
         const speed = Number(element.dataset.parallax) || 0;
         const current = Number.parseFloat(element.style.getPropertyValue("--py")) || 0;
         // rect already includes the current translate; remove it to get the untranslated position
         const base = rect.top + rect.height / 2 - viewportCenter - current;
-        element.style.setProperty("--py", `${(base * speed * strength).toFixed(1)}px`);
+        pyWrites.push([element, `${(base * speed * strength).toFixed(1)}px`]);
       }
+
+      for (const [element, value] of spWrites) element.style.setProperty("--sp", value);
+      for (const [element, value] of pyWrites) element.style.setProperty("--py", value);
     }
 
     function onScroll() {
