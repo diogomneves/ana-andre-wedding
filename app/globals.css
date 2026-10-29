@@ -730,7 +730,7 @@ body.intro-lock { overflow: hidden; position: fixed; inset: 0; width: 100%; }
 .venue-section { display: grid; padding-bottom: clamp(60px, 8vw, 110px); background: #f8f5ea; }
 .venue-photo {
   width: min(100%, 980px); aspect-ratio: 21 / 9; margin: 0 auto;
-  background: url("/images/fernao-dias.jpg") 40% 60% / cover no-repeat, linear-gradient(160deg, #b9cde1 0%, #e8dfae 55%, #7f9440 100%);
+  background: url("/images/fernao-dias.jpg") 50% 18% / cover no-repeat, linear-gradient(160deg, #b9cde1 0%, #e8dfae 55%, #7f9440 100%);
   box-shadow: var(--shadow);
 }
 .venue-card { width: min(92%, 560px); margin: -80px auto 0; padding: 40px 36px; text-align: center; z-index: 2; }
@@ -923,7 +923,7 @@ body.intro-lock .back-to-top { display: none; }
   .church-art { --e: clamp(0, calc((var(--sp, .5) - .05) * 2.2), 1); clip-path: inset(0 0 calc((1 - var(--e)) * 100%) 0); opacity: calc(.3 + var(--e) * .7); }
 
   .celebration-band .celebration-photo { background-position: 42% calc(40% + (var(--sp, .5) - .5) * 40%); }
-  .venue-photo { background-position: 40% calc(60% + (var(--sp, .5) - .5) * 40%); }
+  .venue-photo { background-position: 50% calc(18% + (var(--sp, .5) - .5) * 24%); }
   .closing-photo { scale: calc(1.2 - var(--sp, .5) * .2); }
 }
 .note-dove { width: 78px; aspect-ratio: 382 / 600; background: url("/images/pomba.png") center / contain no-repeat; filter: drop-shadow(0 8px 10px rgba(88,82,59,.2)); }
@@ -1159,5 +1159,122 @@ body.intro-lock .back-to-top { display: none; }
   .reveal-ready [data-reveal] { filter: none; transition: opacity .7s ease, transform .7s cubic-bezier(.2, .7, .2, 1); }
   .photo-frame-pic { background-position: 1% 4%; }
   .celebration-band .celebration-photo::before { background-position: center, 42% 40%; }
-  .venue-photo { background-position: 40% 60%; filter: sepia(.28) saturate(.9) contrast(1.02); }
+  .venue-photo { background-position: 50% 18%; filter: sepia(.28) saturate(.9) contrast(1.02); }
 }
+
+/* ===== Alinhado com o convite ilustrado: caligrafia, pervinca e floreado ===== */
+:root { --blue-title: #6a8fc4; --font-script-stack: var(--font-script), "Brush Script MT", cursive; --font-hand-stack: var(--font-hand), "Segoe Print", cursive; }
+
+/* Títulos em caligrafia */
+.script-title, .rsvp-card .rsvp-title, .closing-copy strong, .gate-inside strong, .note-section .note-line, .save-month, .venue-card h2, .celebration-band .celebration-photo h2 {
+  font-family: var(--font-script-stack); font-style: normal; font-weight: 400; letter-spacing: 0; text-transform: none; line-height: 1.1;
+}
+.script-title { color: var(--blue-title); font-size: clamp(52px, 11vw, 76px); }
+.rsvp-section .script-title { color: var(--blue-title); }
+.note-section .note-line { font-size: clamp(48px, 11vw, 66px); line-height: 1.05; }
+.note-section .note-line em { font-family: inherit; font-style: normal; color: var(--blue-title); }
+.rsvp-card .rsvp-title { font-size: clamp(50px, 11vw, 72px); color: var(--olive-dark); }
+.rsvp-card .rsvp-title em { font-family: inherit; font-style: normal; color: var(--blue-title); }
+.gate-inside strong { font-size: clamp(40px, 10vw, 54px); color: var(--blue-title); }
+.gate-inside strong em { font-family: inherit; color: var(--olive-dark); }
+.save-month { font-size: clamp(52px, 12vw, 78px); font-weight: 400; color: var(--olive-dark); }
+.venue-card h2 { font-size: clamp(46px, 9vw, 60px); color: var(--blue-title); text-shadow: none; }
+.celebration-band .celebration-photo h2 { font-size: clamp(48px, 10vw, 66px); }
+.celebration-band .celebration-photo h2 em { font-family: inherit; font-style: normal; }
+.closing-copy strong { font-size: clamp(68px, 17vw, 100px); }
+@media (min-width: 900px) { .closing-copy strong { font-size: clamp(72px, 7vw, 96px); } }
+
+/* Detalhes em letra manuscrita */
+.kicker, .save-kicker, .rsvp-card .rsvp-eyebrow, .celebration-kicker, .closing-kicker, .note-kicker, .ceremony-info .kicker, .venue-card .kicker {
+  font-family: var(--font-hand-stack); font-style: normal; font-weight: 600; text-transform: none; letter-spacing: .04em; font-size: 24px; color: var(--olive-dark);
+}
+.celebration-kicker, .closing-kicker { color: var(--gold-light); font-size: 24px; }
+.kicker::before, .kicker::after, .save-kicker::before, .save-kicker::after, .rsvp-card .rsvp-eyebrow::before, .rsvp-card .rsvp-eyebrow::after,
+.celebration-kicker::before, .celebration-kicker::after, .closing-kicker::before, .closing-kicker::after,
+.ceremony-info .kicker::before, .ceremony-info .kicker::after, .venue-card .kicker::before, .venue-card .kicker::after { content: none; }
+.ceremony-info h2 { font-family: var(--font-hand-stack); font-style: normal; font-weight: 600; color: var(--olive-dark); font-size: clamp(60px, 13vw, 84px); text-shadow: none; }
+.ceremony-info p strong, .closing-names, .save-line, .closing-line, .countdown-caption, .tl-text h3 { font-family: var(--font-hand-stack); font-style: normal; font-variant: normal; letter-spacing: .02em; font-weight: 600; }
+.ceremony-info p strong { font-size: 30px; color: var(--olive-dark); }
+.closing-names { font-size: 32px; }
+.closing-line { font-size: clamp(28px, 7vw, 38px); }
+.save-line { font-size: clamp(32px, 8vw, 46px); }
+.countdown-caption { font-size: clamp(28px, 6vw, 34px); color: var(--olive-dark); }
+.tl-text h3 { font-size: clamp(26px, 4vw, 32px); color: var(--olive-dark); }
+.tl-time, .save-year { font-family: var(--font-hand-stack); font-style: normal; font-weight: 600; }
+.ceremony-info .text-link, .venue-card .text-link { font-family: var(--font-hand-stack); font-style: normal; font-weight: 600; font-size: 22px; letter-spacing: .02em; }
+.save-line em { font-family: inherit; font-style: normal; color: var(--blue-title); }
+
+/* Floreado com alianças no lugar de molduras e traços */
+.flourish { display: block; width: min(260px, 72%); height: 36px; margin: 10px auto 14px; background: var(--olive-soft); -webkit-mask: url("/images/floreado.svg") center / contain no-repeat; mask: url("/images/floreado.svg") center / contain no-repeat; }
+.ceremony-info::after, .venue-card::after, .ceremony-medal { display: none; }
+.ceremony-info { padding-top: 48px; }
+.venue-card { padding-top: 40px; }
+
+/* Timeline: ícones gravados vintage */
+.tl-row { grid-template-columns: 1fr 104px 1fr; }
+.tl-medal { width: 92px; height: 92px; border: 1px solid var(--gold); background: radial-gradient(circle at 50% 40%, #fffdf8 0%, #f8efdc 100%); box-shadow: 0 0 0 6px rgba(241,233,226,.95), 0 0 0 7px rgba(184,144,58,.45), 0 10px 22px rgba(88,82,59,.16); }
+.tl-medal img { width: 66px; height: 66px; object-fit: contain; filter: drop-shadow(0 2px 2px rgba(110,80,25,.22)); }
+.tl-row.in-view .tl-medal { background: radial-gradient(circle at 50% 40%, #fffdf8 0%, #f8efdc 100%); color: inherit; scale: 1.05; }
+@media (max-width: 760px) {
+  .tl::before { left: 54px; }
+  .tl-row, .tl-row:nth-child(even) { grid-template-columns: 104px 1fr; }
+  .tl-medal { width: 84px; height: 84px; margin-left: 0; }
+  .tl-medal img { width: 60px; height: 60px; }
+  .tl-time, .tl-row:nth-child(even) .tl-time, .tl-text, .tl-row:nth-child(even) .tl-text { padding-left: 10px; }
+}
+
+/* Convite: devolver altura à foto (nome em caligrafia ocupava demasiado) */
+.gate-inside { padding: 26px 26px 22px; gap: 6px; }
+.gate-inside strong { margin-top: 0; font-size: clamp(34px, 8.5vw, 44px); line-height: 1; }
+.gate-inside small { padding-bottom: 18px; }
+.gate-photo { width: 76%; }
+.gate-inside { gap: 14px; }
+.gate-inside strong { margin-top: 8px; }
+.gate-card { aspect-ratio: 4 / 5.4; width: min(78vw, 400px, calc(60svh * 4 / 5.4)); }
+.gate-photo { width: 74%; }
+
+/* Moldura + polaroids vintage */
+html { overflow-x: clip; }
+.photo-section { overflow-x: clip; }
+.photo-collage { position: relative; width: min(88vw, 400px); }
+.photo-collage .photo-frame { width: 100%; }
+.polaroid {
+  position: absolute; z-index: 2; margin: 0; width: 38%; padding: 5%;
+  background: linear-gradient(160deg, #f8efd9, #efe2c2); color: #6b5a38;
+  box-shadow: 0 12px 24px rgba(60,50,20,.3), inset 0 0 14px rgba(150,115,50,.22);
+}
+.polaroid::before { content: ""; position: absolute; top: -10px; left: 50%; width: 40%; height: 18px; translate: -50% 0; rotate: -3deg; background: rgba(243,220,156,.8); box-shadow: 0 1px 2px rgba(60,50,20,.18); }
+.polaroid-pic { position: relative; display: block; aspect-ratio: 1; background: url("/images/abraco.jpg") 100% 45% / 190% auto no-repeat; filter: sepia(.55) contrast(.95) saturate(.8) brightness(.98); box-shadow: inset 0 0 18px rgba(70,45,10,.45); }
+.polaroid-pic::after { content: ""; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(255,230,170,.18), transparent 45%, rgba(120,80,20,.16)); }
+.polaroid-a { left: -4%; bottom: 3%; rotate: -7deg; }
+.polaroid-b { right: -4%; top: 3%; rotate: 6deg; }
+.polaroid-b .polaroid-pic { background-image: url("/images/passeio.jpg"); background-position: 62% 60%; background-size: 190%; }
+.polaroid-c, .polaroid-d { display: none; }
+@media (min-width: 900px) {
+  .photo-collage { width: min(94vw, 1000px); display: grid; justify-items: center; }
+  .photo-collage .photo-frame { width: 400px; }
+  .polaroid { width: 22%; }
+  .polaroid-c, .polaroid-d { display: block; }
+  .polaroid-a { left: 4%; bottom: 8%; rotate: -6deg; }
+  .polaroid-c { left: 17%; top: 4%; width: 19%; rotate: 5deg; }
+  .polaroid-c .polaroid-pic { background-position: 100% 65%; background-size: 220%; }
+  .polaroid-b { right: 4%; top: 10%; rotate: 6deg; }
+  .polaroid-d { right: 17%; bottom: 2%; width: 19%; rotate: -4deg; }
+  .polaroid-d .polaroid-pic { background-image: url("/images/passeio.jpg"); background-position: 62% 60%; background-size: 200%; }
+}
+
+/* Guarda a data: letra manuscrita maior */
+.save-year { font-size: clamp(30px, 8vw, 38px); letter-spacing: .18em; margin-top: 4px; }
+.save-line { font-size: clamp(36px, 9.5vw, 52px); }
+.save-kicker { font-size: clamp(26px, 6.5vw, 32px); }
+
+/* "Depois do sim" como cabeçalho da secção do local */
+.venue-lead { margin: 14px auto 0; max-width: 320px; color: var(--text-soft); font-size: 18px; font-style: italic; line-height: 1.4; text-wrap: balance; }
+.venue-section .section-heading { text-align: center; }
+
+/* Foto da silhueta entre a timeline e o RSVP */
+.moment-section { display: grid; place-items: center; }
+.moment-photo { position: relative; margin: 0; width: min(92vw, 600px); padding: 10px; rotate: -1.2deg; background: linear-gradient(160deg, #f8efd9, #efe2c2); box-shadow: 0 16px 32px rgba(60,50,20,.3), inset 0 0 14px rgba(150,115,50,.22); }
+.moment-photo::before { content: ""; position: absolute; top: -11px; left: 50%; width: 22%; height: 20px; translate: -50% 0; rotate: -3deg; background: rgba(243,220,156,.8); box-shadow: 0 1px 2px rgba(60,50,20,.18); z-index: 1; }
+.moment-pic { display: block; aspect-ratio: 3 / 2; background: url("/images/silhueta.jpg") 42% 40% / cover no-repeat; filter: sepia(.45) contrast(.98) saturate(.85); box-shadow: inset 0 0 20px rgba(70,45,10,.4); }
+.moment-section .section-heading { text-align: center; }

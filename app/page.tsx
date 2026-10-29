@@ -7,13 +7,7 @@ import PaperFilters from "@/components/PaperFilters";
 import Parallax from "@/components/Parallax";
 import RsvpForm from "@/components/RsvpForm";
 
-const icons: Record<string, React.ReactNode> = {
-  rings: <><circle cx="9" cy="14.5" r="5" /><circle cx="15" cy="14.5" r="5" /><path d="M12 3.5l1.6 2L12 7.5l-1.6-2z" /></>,
-  glass: <path d="M5 4h14l-7 9zM12 13v7M8 20h8" />,
-  dining: <path d="M6 3v7a2 2 0 0 0 4 0V3M8 3v18M17 3c-2.2 1.6-3 4.4-3 7.5h3V21" />,
-  cake: <path d="M4 21h16M5 21v-6.5h14V21M5 14.5c2.3 2.2 4.6 2.2 7 0 2.4 2.2 4.7 2.2 7 0M12 10.5V7.5M12 7.5c-1.3-1-1.3-2.4 0-3.5 1.3 1.1 1.3 2.5 0 3.5" />,
-  music: <path d="M9 18V5.5l10-2V16M9 18a3 3 0 1 1-3-3 3 3 0 0 1 3 3zM19 16a3 3 0 1 1-3-3 3 3 0 0 1 3 3z" />,
-};
+const ringsIcon = <><circle cx="9" cy="14.5" r="5" /><circle cx="15" cy="14.5" r="5" /><path d="M12 3.5l1.6 2L12 7.5l-1.6-2z" /></>;
 
 const schedule = [
   { time: "11:00", label: "Cerimónia", note: "O momento em que dizemos «sim»", icon: "rings" },
@@ -46,8 +40,17 @@ export default function HomePage() {
       </section>
 
       <section className="section photo-section">
-        <div className="photo-frame" data-reveal data-scroll role="img" aria-label="Ana e André na praia ao pôr do sol">
-          <div className="photo-frame-pic" />
+        <div className="photo-collage">
+          <div className="photo-frame" data-reveal data-scroll role="img" aria-label="Ana e André na praia ao pôr do sol">
+            <div className="photo-frame-pic" />
+          </div>
+          {[
+            "a", "b", "c", "d",
+          ].map((c, i) => (
+            <figure className={`polaroid polaroid-${c}`} key={c} data-reveal={i % 2 === 0 ? "left" : "right"} role="img" aria-label="Ana e André">
+              <span className="polaroid-pic" />
+            </figure>
+          ))}
         </div>
       </section>
 
@@ -79,10 +82,11 @@ export default function HomePage() {
           <div className="church-art" data-scroll role="img" aria-label="Desenho da igreja" />
           <div className="ceremony-info">
             <span className="ceremony-medal" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">{icons.rings}</svg>
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">{ringsIcon}</svg>
             </span>
             <p className="kicker">Cerimónia</p>
             <h2>11h00</h2>
+            <span className="flourish" aria-hidden="true" />
             <p><strong>Castro Verde</strong></p>
             <p>A localização exata será atualizada no convite formal.</p>
             <a className="text-link" href="https://maps.google.com/?q=Castro+Verde+Portugal" target="_blank" rel="noreferrer">Abrir mapa ↗</a>
@@ -90,21 +94,18 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="celebration-band">
-        <div className="celebration-photo" data-scroll>
-          <div className="celebration-top">
-            <span className="celebration-kicker">Celebração</span>
-            <h2>Depois do <em>“sim”</em></h2>
-          </div>
-          <p>Seguimos juntos para o almoço, brindes, música e festa.</p>
+<section className="section venue-section" id="local">
+        <div className="section-heading" data-reveal>
+          <p className="kicker">Celebração</p>
+          <p className="script-title">Depois do sim</p>
+          <span className="flourish" aria-hidden="true" />
+          <p className="venue-lead">Seguimos juntos para o almoço, brindes, música e festa.</p>
         </div>
-      </section>
-
-      <section className="section venue-section" id="local">
         <div className="venue-photo" data-parallax="0.04" data-scroll role="img" aria-label="Monte Fernão Dias" />
         <div className="venue-card paper" data-reveal>
           <p className="kicker">Onde vai ser</p>
           <h2>Monte Fernão Dias</h2>
+          <span className="flourish" aria-hidden="true" />
           <p>Castro Verde — um cenário tranquilo, aberto e luminoso, exatamente como imaginámos este dia.</p>
           <a className="text-link" href="https://www.google.com/maps/search/?api=1&query=Monte+Fern%C3%A3o+Dias+Castro+Verde" target="_blank" rel="noreferrer">Como chegar ↗</a>
         </div>
@@ -114,13 +115,14 @@ export default function HomePage() {
         <div className="section-heading" data-reveal>
           <p className="kicker">O nosso dia</p>
           <p className="script-title">Queremos celebrar contigo</p>
+          <span className="flourish" aria-hidden="true" />
         </div>
         <div className="tl" data-scroll>
           {schedule.map(({ time, label, note, icon }, index) => (
             <div className="tl-row" key={time} data-reveal={index % 2 === 0 ? "left" : "right"}>
               <time className="tl-time">{time}</time>
               <span className="tl-medal" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">{icons[icon]}</svg>
+                <img src={`/images/timeline/${icon}.png`} alt="" width="64" height="64" loading="lazy" decoding="async" />
               </span>
               <div className="tl-text">
                 <h3>{label}</h3>
@@ -129,6 +131,18 @@ export default function HomePage() {
             </div>
           ))}
         </div>
+      </section>
+
+      <section className="section moment-section" aria-label="Ana e André">
+        <div className="section-heading" data-reveal>
+          <p className="kicker">O nosso álbum</p>
+          <p className="script-title">Só nós dois</p>
+          <span className="flourish" aria-hidden="true" />
+          <p className="venue-lead">Há momentos que o tempo não apaga.</p>
+        </div>
+        <figure className="moment-photo" data-reveal role="img" aria-label="Silhueta de Ana e André junto ao mar">
+          <span className="moment-pic" />
+        </figure>
       </section>
 
       <section className="section rsvp-section" id="rsvp">
