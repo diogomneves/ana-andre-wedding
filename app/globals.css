@@ -1163,7 +1163,7 @@ body.intro-lock .back-to-top { display: none; }
 }
 
 /* ===== Alinhado com o convite ilustrado: caligrafia, pervinca e floreado ===== */
-:root { --blue-title: #6a8fc4; --font-script-stack: var(--font-script), "Brush Script MT", cursive; --font-hand-stack: var(--font-hand), "Segoe Print", cursive; }
+:root { --blue-title: #6a8fc4; --font-script-stack: var(--font-script), "Brush Script MT", cursive; --font-hand-stack: var(--font-hand), Georgia, "Times New Roman", serif; }
 
 /* Títulos em caligrafia */
 .script-title, .rsvp-card .rsvp-title, .closing-copy strong, .gate-inside strong, .note-section .note-line, .save-month, .venue-card h2, .celebration-band .celebration-photo h2 {
@@ -1302,3 +1302,9 @@ html { overflow-x: clip; }
 .carousel-wrap, .carousel, .carousel-track { min-width: 0; max-width: 100%; }
 .button.calendar-add { background: linear-gradient(180deg, #d9b765 0%, #b8903a 50%, #96701f 100%); color: #fffdf8; text-shadow: 0 1px 2px rgba(80,55,10,.55); }
 .button.calendar-add:hover { background: linear-gradient(180deg, #e0c070 0%, #c09843 50%, #9f7824 100%); }
+
+.gate-inside strong em { margin: 0 .12em; }
+
+/* Nome no cartão: mesmo estilo do título de cima */
+.gate-inside strong { font-family: Georgia, "Times New Roman", serif; font-style: italic; font-weight: 400; color: var(--gold-dark); font-size: clamp(30px, 7vw, 40px); letter-spacing: 0; }
+.gate-inside strong em { margin: 0; color: inherit; font-family: inherit; font-style: italic; }

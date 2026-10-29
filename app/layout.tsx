@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Great_Vibes, Caveat } from "next/font/google";
+import { Allura, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 
-const script = Great_Vibes({ weight: "400", subsets: ["latin"], variable: "--font-script", display: "swap" });
-const hand = Caveat({ weight: ["500", "600"], subsets: ["latin"], variable: "--font-hand", display: "swap" });
+const script = Allura({ weight: "400", subsets: ["latin"], variable: "--font-script", display: "swap" });
+const hand = Cormorant_Garamond({ weight: ["500", "600", "700"], style: "italic", subsets: ["latin"], variable: "--font-hand", display: "swap" });
 
 export const metadata: Metadata = {
   title: "Ana & André — 14 maio 2027",
