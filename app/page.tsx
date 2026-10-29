@@ -5,9 +5,17 @@ import Countdown from "@/components/Countdown";
 import InvitationIntro from "@/components/InvitationIntro";
 import PaperFilters from "@/components/PaperFilters";
 import Parallax from "@/components/Parallax";
+import PhotoCarousel from "@/components/PhotoCarousel";
 import RsvpForm from "@/components/RsvpForm";
 
 const ringsIcon = <><circle cx="9" cy="14.5" r="5" /><circle cx="15" cy="14.5" r="5" /><path d="M12 3.5l1.6 2L12 7.5l-1.6-2z" /></>;
+
+const momentPhotos = [
+  { src: "/images/silhueta.jpg", alt: "Silhueta de Ana e André junto ao mar", position: "42% 40%" },
+  { src: "/images/abraco.jpg", alt: "Ana e André abraçados na praia", position: "80% 50%" },
+  { src: "/images/passeio.jpg", alt: "Ana e André de mãos dadas na praia", position: "60% 60%" },
+  { src: "/images/por-do-sol.jpg", alt: "Ana e André ao pôr do sol", position: "50% 50%" },
+];
 
 const schedule = [
   { time: "11:00", label: "Cerimónia", note: "O momento em que dizemos «sim»", icon: "rings" },
@@ -140,9 +148,9 @@ export default function HomePage() {
           <span className="flourish" aria-hidden="true" />
           <p className="venue-lead">Há momentos que o tempo não apaga.</p>
         </div>
-        <figure className="moment-photo" data-reveal role="img" aria-label="Silhueta de Ana e André junto ao mar">
-          <span className="moment-pic" />
-        </figure>
+        <div data-reveal className="carousel-wrap">
+          <PhotoCarousel photos={momentPhotos} />
+        </div>
       </section>
 
       <section className="section rsvp-section" id="rsvp">

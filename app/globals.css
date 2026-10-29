@@ -1272,9 +1272,33 @@ html { overflow-x: clip; }
 .venue-lead { margin: 14px auto 0; max-width: 320px; color: var(--text-soft); font-size: 18px; font-style: italic; line-height: 1.4; text-wrap: balance; }
 .venue-section .section-heading { text-align: center; }
 
-/* Foto da silhueta entre a timeline e o RSVP */
-.moment-section { display: grid; place-items: center; }
-.moment-photo { position: relative; margin: 0; width: min(92vw, 600px); padding: 10px; rotate: -1.2deg; background: linear-gradient(160deg, #f8efd9, #efe2c2); box-shadow: 0 16px 32px rgba(60,50,20,.3), inset 0 0 14px rgba(150,115,50,.22); }
-.moment-photo::before { content: ""; position: absolute; top: -11px; left: 50%; width: 22%; height: 20px; translate: -50% 0; rotate: -3deg; background: rgba(243,220,156,.8); box-shadow: 0 1px 2px rgba(60,50,20,.18); z-index: 1; }
-.moment-pic { display: block; aspect-ratio: 3 / 2; background: url("/images/silhueta.jpg") 42% 40% / cover no-repeat; filter: sepia(.45) contrast(.98) saturate(.85); box-shadow: inset 0 0 20px rgba(70,45,10,.4); }
 .moment-section .section-heading { text-align: center; }
+
+/* Carrossel de fotos */
+.moment-section { display: grid; place-items: center; }
+.carousel-wrap { width: 100%; }
+.carousel { width: 100%; --slide: min(74vw, 440px); }
+.carousel-track { display: flex; gap: 18px; overflow-x: auto; padding: 22px calc(50% - var(--slide) / 2) 30px; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: none; -webkit-overflow-scrolling: touch; outline-offset: -4px; }
+.carousel-track::-webkit-scrollbar { display: none; }
+.carousel-slide { flex: 0 0 var(--slide); margin: 0; padding: 10px; position: relative; scroll-snap-align: center; background: linear-gradient(160deg, #f8efd9, #efe2c2); box-shadow: 0 14px 28px rgba(60,50,20,.28), inset 0 0 14px rgba(150,115,50,.22); rotate: -1.2deg; scale: .9; opacity: .75; transition: scale .5s ease, opacity .5s ease, rotate .5s ease; }
+.carousel-slide:nth-child(even) { rotate: 1.2deg; }
+.carousel-slide.is-active { scale: 1; opacity: 1; rotate: 0deg; }
+.carousel-slide::before { content: ""; position: absolute; top: -10px; left: 50%; width: 24%; height: 18px; translate: -50% 0; rotate: -3deg; background: rgba(243,220,156,.8); box-shadow: 0 1px 2px rgba(60,50,20,.18); z-index: 1; }
+.carousel-slide img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; filter: sepia(.45) contrast(.98) saturate(.85); box-shadow: inset 0 0 20px rgba(70,45,10,.4); user-select: none; -webkit-user-drag: none; }
+.carousel-controls { display: flex; align-items: center; justify-content: center; gap: 18px; }
+.carousel-arrow { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--gold); background: var(--warm-white); color: var(--gold-dark); font-size: 26px; line-height: 1; cursor: pointer; transition: background .2s ease, color .2s ease, opacity .2s ease; }
+.carousel-arrow:hover:not(:disabled) { background: var(--gold); color: var(--warm-white); }
+.carousel-arrow:disabled { opacity: .35; cursor: default; }
+.carousel-dots { display: flex; gap: 10px; }
+.carousel-dots button { width: 10px; height: 10px; padding: 0; border: 1px solid var(--gold); border-radius: 50%; background: transparent; cursor: pointer; transition: background .3s ease, scale .3s ease; }
+.carousel-dots button.is-active { background: var(--gold); scale: 1.25; }
+@media (prefers-reduced-motion: reduce) { .carousel-slide { transition: none; } }
+
+/* Botão dourado */
+.button.calendar-add { background: linear-gradient(180deg, #e6c983 0%, #c9a24c 48%, #a97f2a 100%); color: #2f2408; text-shadow: 0 1px 0 rgba(255,240,200,.55); box-shadow: 0 12px 26px rgba(120,88,24,.3), inset 0 1px 0 rgba(255,244,210,.7), inset 0 -2px 0 rgba(110,78,20,.25); }
+.button.calendar-add:hover { background: linear-gradient(180deg, #edd18f 0%, #d0a950 48%, #b4872f 100%); }
+.moment-section { display: block; padding-inline: 0; overflow-x: clip; }
+.moment-section .section-heading { padding-inline: clamp(24px, 7vw, 110px); }
+.carousel-wrap, .carousel, .carousel-track { min-width: 0; max-width: 100%; }
+.button.calendar-add { background: linear-gradient(180deg, #d9b765 0%, #b8903a 50%, #96701f 100%); color: #fffdf8; text-shadow: 0 1px 2px rgba(80,55,10,.55); }
+.button.calendar-add:hover { background: linear-gradient(180deg, #e0c070 0%, #c09843 50%, #9f7824 100%); }
