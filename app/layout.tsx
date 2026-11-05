@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { Allura, Cormorant_Garamond } from "next/font/google";
+import { Parisienne, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 
-const script = Allura({ weight: "400", subsets: ["latin"], variable: "--font-script", display: "swap" });
+const script = Parisienne({ weight: "400", subsets: ["latin"], variable: "--font-script", display: "swap" });
 const hand = Cormorant_Garamond({ weight: ["500", "600", "700"], style: "italic", subsets: ["latin"], variable: "--font-hand", display: "swap" });
 
 export const metadata: Metadata = {

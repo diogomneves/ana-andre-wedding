@@ -48,17 +48,13 @@ export default function HomePage() {
       </section>
 
       <section className="section photo-section">
-        <div className="photo-collage">
-          <div className="photo-frame" data-reveal data-scroll role="img" aria-label="Ana e André na praia ao pôr do sol">
-            <div className="photo-frame-pic" />
+        <div className="photo-card" data-reveal>
+          <div className="frame-hang">
+            <div className="card-sheet">
+              <div className="card-photo" role="img" aria-label="Ana e André a passear na praia ao pôr do sol" />
+            </div>
           </div>
-          {[
-            "a", "b", "c", "d",
-          ].map((c, i) => (
-            <figure className={`polaroid polaroid-${c}`} key={c} data-reveal={i % 2 === 0 ? "left" : "right"} role="img" aria-label="Ana e André">
-              <span className="polaroid-pic" />
-            </figure>
-          ))}
+          <span className="frame-seal" aria-hidden="true" />
         </div>
       </section>
 

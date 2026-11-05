@@ -276,7 +276,7 @@ body.intro-lock { overflow: hidden; position: fixed; inset: 0; width: 100%; }
   display: grid;
   place-items: center;
   padding: 24px;
-  background: #f1e9e2 url("/images/linho.jpg") center / cover no-repeat;
+  background: #f1eee9 url("/images/papel-claro.jpg") center / 360px auto repeat;
   overflow: hidden;
 }
 .gate-intro::before {
@@ -409,14 +409,14 @@ body.intro-lock { overflow: hidden; position: fixed; inset: 0; width: 100%; }
 .seal-half {
   position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 2px; padding-bottom: 3%;
   color: var(--gold-dark); font-size: 17px; font-weight: 700; line-height: 1; text-shadow: 0 1px 0 rgba(255,250,222,.8), 0 -1px 0 rgba(110,80,25,.25);
-  background: url("/images/selo.png") center / 100% 100% no-repeat;
+  background: url("/images/selo-amarelo.png") center / 100% 100% no-repeat;
   transition: transform .9s cubic-bezier(.5,0,.3,1), opacity .9s ease;
 }
 .seal-half b { font-size: 12px; font-style: italic; font-weight: 400; }
 .seal-a { clip-path: inset(0 50% 0 0); }
 .seal-b { clip-path: inset(0 0 0 50%); }
 .seal-half::after {
-  content: ""; position: absolute; inset: 0; -webkit-mask: url("/images/selo.png") center / 100% 100% no-repeat; mask: url("/images/selo.png") center / 100% 100% no-repeat;
+  content: ""; position: absolute; inset: 0; -webkit-mask: url("/images/selo-amarelo.png") center / 100% 100% no-repeat; mask: url("/images/selo-amarelo.png") center / 100% 100% no-repeat;
   background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,.55) 50%, transparent 65%) -150% 0 / 250% 100% no-repeat;
   animation: sealShine 3.6s ease-in-out infinite;
 }
@@ -889,7 +889,7 @@ body::before { content: ""; position: fixed; inset: 0; z-index: -1; background: 
 .back-to-top.is-visible { opacity: 1; transform: none; pointer-events: auto; }
 .back-to-top:hover { background: #fff; }
 body.intro-lock .back-to-top { display: none; }
-.seal-half { background: url("/images/monograma.png") center 46% / 60% auto no-repeat, url("/images/selo.png") center / 100% 100% no-repeat; }
+.seal-half { background: url("/images/monograma-ouro.png") center 46% / 60% auto no-repeat, url("/images/selo-amarelo.png") center / 100% 100% no-repeat; }
 .note-paper { gap: 20px; padding-top: clamp(56px, 9vw, 84px); }
 .note-section .note-line { margin: 0; font-size: clamp(36px, 8vw, 50px); font-weight: 400; font-style: italic; line-height: 1.12; color: var(--olive-dark); }
 .note-section .note-line em { color: var(--gold); }
@@ -1308,3 +1308,30 @@ html { overflow-x: clip; }
 /* Nome no cartão: mesmo estilo do título de cima */
 .gate-inside strong { font-family: Georgia, "Times New Roman", serif; font-style: italic; font-weight: 400; color: var(--gold-dark); font-size: clamp(30px, 7vw, 40px); letter-spacing: 0; }
 .gate-inside strong em { margin: 0; color: inherit; font-family: inherit; font-style: italic; }
+
+/* Carta verde-salva com relevo e selo amarelo */
+.gate-panel { background: #949782 url("/images/carta-verde.jpg") 0 0 / 200% 100% no-repeat; }
+.gate-right { background-position: 100% 0; }
+.gate-left { box-shadow: inset -2px 0 0 rgba(243,226,150,.7); }
+.gate-right { box-shadow: inset 2px 0 0 rgba(243,226,150,.7); }
+.gate-seal { filter: drop-shadow(0 6px 7px rgba(60,55,30,.45)); }
+.seal-half { filter: drop-shadow(0 1px 0 rgba(255,248,210,.7)); }
+
+
+/* ===== Fundo de linho claro em todo o convite ===== */
+body { background: #f1eee9; }
+body::before { background: url("/images/papel-claro.jpg") center top / 360px auto repeat; }
+
+/* ===== Moldura oval num cartão, pendurada no selo A&A ===== */
+.photo-card { position: relative; width: min(84vw, 380px); padding-top: 30px; }
+.card-sheet { position: relative; aspect-ratio: 699 / 1069; filter: drop-shadow(0 16px 22px rgba(60,55,30,.28)); }
+.card-sheet::after { content: ""; position: absolute; inset: 0; background: url("/images/moldura-cartao.png") center / 100% 100% no-repeat; pointer-events: none; }
+.card-photo { position: absolute; left: 8.9%; right: 9.5%; top: 5.7%; bottom: 6.3%; background: url("/images/por-do-sol.jpg") 30% 18% / cover no-repeat; filter: sepia(.2) saturate(.95) contrast(1.02); }
+.frame-hang { transform-origin: 50% 0; animation: frameSway 6.5s ease-in-out infinite; }
+@keyframes frameSway { 0%, 100% { rotate: -2.4deg; } 50% { rotate: 2.4deg; } }
+.frame-seal {
+  position: absolute; left: 50%; top: 2px; z-index: 3; width: 66px; aspect-ratio: 552 / 512; translate: -50% 0;
+  background: url("/images/monograma-ouro.png") center 46% / 60% auto no-repeat, url("/images/selo-amarelo.png") center / 100% 100% no-repeat;
+  filter: drop-shadow(0 5px 6px rgba(60,55,30,.4));
+}
+@media (prefers-reduced-motion: reduce) { .frame-hang { animation: none; } }
