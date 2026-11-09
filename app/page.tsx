@@ -48,14 +48,7 @@ export default function HomePage() {
       </section>
 
       <section className="section photo-section">
-        <div className="photo-card" data-reveal>
-          <div className="frame-hang">
-            <div className="card-sheet">
-              <div className="card-photo" role="img" aria-label="Ana e André a passear na praia ao pôr do sol" />
-            </div>
-          </div>
-          <span className="frame-seal" aria-hidden="true" />
-        </div>
+        <img className="story-img" data-reveal src="/images/historia.jpg" width={1836} height={1272} alt="Ana e André a passear na praia ao pôr do sol — A nossa história continua…" />
       </section>
 
       <section className="section save-section" aria-label="Guarda a data" data-scroll>

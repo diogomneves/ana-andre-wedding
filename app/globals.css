@@ -1322,16 +1322,5 @@ html { overflow-x: clip; }
 body { background: #f1eee9; }
 body::before { background: url("/images/papel-claro.jpg") center top / 360px auto repeat; }
 
-/* ===== Moldura oval num cartão, pendurada no selo A&A ===== */
-.photo-card { position: relative; width: min(84vw, 380px); padding-top: 30px; }
-.card-sheet { position: relative; aspect-ratio: 699 / 1069; filter: drop-shadow(0 16px 22px rgba(60,55,30,.28)); }
-.card-sheet::after { content: ""; position: absolute; inset: 0; background: url("/images/moldura-cartao.png") center / 100% 100% no-repeat; pointer-events: none; }
-.card-photo { position: absolute; left: 8.9%; right: 9.5%; top: 5.7%; bottom: 6.3%; background: url("/images/por-do-sol.jpg") 30% 18% / cover no-repeat; filter: sepia(.2) saturate(.95) contrast(1.02); }
-.frame-hang { transform-origin: 50% 0; animation: frameSway 6.5s ease-in-out infinite; }
-@keyframes frameSway { 0%, 100% { rotate: -2.4deg; } 50% { rotate: 2.4deg; } }
-.frame-seal {
-  position: absolute; left: 50%; top: 2px; z-index: 3; width: 66px; aspect-ratio: 552 / 512; translate: -50% 0;
-  background: url("/images/monograma-ouro.png") center 46% / 60% auto no-repeat, url("/images/selo-amarelo.png") center / 100% 100% no-repeat;
-  filter: drop-shadow(0 5px 6px rgba(60,55,30,.4));
-}
-@media (prefers-reduced-motion: reduce) { .frame-hang { animation: none; } }
+/* ===== Fotografia "A nossa história continua" ===== */
+.story-img { display: block; width: min(100%, 760px); height: auto; }
