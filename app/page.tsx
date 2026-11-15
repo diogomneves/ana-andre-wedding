@@ -48,7 +48,16 @@ export default function HomePage() {
       </section>
 
       <section className="section photo-section">
-        <img className="story-img" data-reveal src="/images/historia.jpg" width={1836} height={1272} alt="Ana e André a passear na praia ao pôr do sol — A nossa história continua…" />
+        <div className="story" data-reveal data-scroll role="img" aria-label="Ana e André a passear na praia ao pôr do sol — A nossa história continua…">
+          <div className="story-float">
+            <div className="story-window">
+              <div className="story-pan">
+                <img className="story-photo" src="/images/historia-foto.jpg" alt="" />
+              </div>
+            </div>
+            <img className="story-frame" src="/images/historia-moldura.webp" width={1836} height={1272} alt="" />
+          </div>
+        </div>
       </section>
 
       <section className="section save-section" aria-label="Guarda a data" data-scroll>
