@@ -5,7 +5,7 @@ import { rsvpSchema } from "@/lib/rsvpSchema";
 
 type FieldErrors = { name?: string; guestCount?: string };
 
-const RSVP_DEADLINE = "14 de abril de 2027";
+const RSVP_DEADLINE = "31.12.2026";
 
 export default function RsvpForm() {
   const [name, setName] = useState("");
@@ -78,7 +78,6 @@ export default function RsvpForm() {
   return (
     <div className="rsvp-card paper">
       <header className="rsvp-head">
-        <p className="rsvp-eyebrow">Uma carta de volta</p>
         <h2 className="rsvp-title">
           Vens celebrar <em>connosco?</em>
         </h2>
@@ -137,6 +136,7 @@ export default function RsvpForm() {
                   <span>Não</span>
                 </label>
               </div>
+              <p className="field-help">Se a resposta for sim, iremos enviar algumas opções para que possam reservar atempadamente.</p>
             </fieldset>
 
             <label className="field">

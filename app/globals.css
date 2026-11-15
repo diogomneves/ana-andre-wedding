@@ -1318,9 +1318,7 @@ html { overflow-x: clip; }
 .seal-half { filter: drop-shadow(0 1px 0 rgba(255,248,210,.7)); }
 
 
-/* ===== Fundo de linho claro em todo o convite ===== */
 body { background: #f1eee9; }
 body::before { background: url("/images/papel-claro.jpg") center top / 360px auto repeat; }
 
-/* ===== Fotografia "A nossa história continua" ===== */
 .story-img { display: block; width: min(100%, 760px); height: auto; }

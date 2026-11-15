@@ -37,11 +37,11 @@ export default function HomePage() {
       <section className="section note-section" id="inicio">
         <div className="note-paper" data-reveal data-scroll>
           <div className="note-dove" aria-hidden="true" />
-          <h2 className="note-line">E agora,<br /><em>para sempre.</em></h2>
+          <h2 className="note-line">E agora,<br /><em>será para sempre.</em></h2>
           <div className="note-body">
             <p>Uma caminhada cheia de amor trouxe-nos até aqui, e queremos dar o próximo passo ao lado de quem mais amamos.</p>
             <p>Com a bênção de Deus e o carinho das nossas famílias, vamos dizer «sim».</p>
-            <p>Vai ser muito mais feliz se estiveres lá connosco.</p>
+            <p>Vai ser um dia mais feliz se estiverem lá connosco.</p>
           </div>
           <span className="note-sign">Ana &amp; André</span>
         </div>
@@ -57,14 +57,14 @@ export default function HomePage() {
           <strong className="save-day">14</strong>
           <span className="save-month">maio</span>
           <span className="save-year">2027</span>
-          <p className="save-line">Há um dia<br /><em>que já é nosso.</em></p>
+          <p className="save-line">Um dia<br /><em>que já é nosso.</em></p>
         </div>
       </section>
 
       <section className="section countdown-section" aria-labelledby="countdown-title">
         <Calendar year={2027} month={5} day={14} time="11h00" />
         <div className="countdown-block" data-reveal>
-          <p className="countdown-caption" id="countdown-title">Cada vez falta menos</p>
+          <p className="countdown-caption" id="countdown-title">Cada vez mais perto</p>
           <Countdown target="2027-05-14T11:00:00+01:00" />
           <a className="button ghost calendar-add" href="/ana-andre-2027.ics" download>
             <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M3 10h18M8 3v4M16 3v4" /></svg>
@@ -75,7 +75,7 @@ export default function HomePage() {
 
       <section className="section intro-section ceremony-section" id="detalhes">
         <div className="narrow" data-reveal>
-          <p className="script-title">Entre flores e abraços</p>
+          <p className="script-title">Entre sorrisos e abraços</p>
           <div className="church-art" data-scroll role="img" aria-label="Desenho da igreja" />
           <div className="ceremony-info">
             <span className="ceremony-medal" aria-hidden="true">
@@ -84,9 +84,9 @@ export default function HomePage() {
             <p className="kicker">Cerimónia</p>
             <h2>11h00</h2>
             <span className="flourish" aria-hidden="true" />
-            <p><strong>Castro Verde</strong></p>
-            <p>A localização exata será atualizada no convite formal.</p>
-            <a className="text-link" href="https://maps.google.com/?q=Castro+Verde+Portugal" target="_blank" rel="noreferrer">Abrir mapa ↗</a>
+            <p><strong>Basílica Real de Castro Verde</strong></p>
+            <p>Travessa da Igreja, 7780-173 Castro Verde</p>
+            <a className="text-link" href="https://www.google.com/maps/search/?api=1&query=Bas%C3%ADlica+Real+de+Castro+Verde" target="_blank" rel="noreferrer">Abrir mapa ↗</a>
           </div>
         </div>
       </section>
@@ -103,15 +103,15 @@ export default function HomePage() {
           <p className="kicker">Onde vai ser</p>
           <h2>Monte Fernão Dias</h2>
           <span className="flourish" aria-hidden="true" />
-          <p>Castro Verde — um cenário tranquilo, aberto e luminoso, exatamente como imaginámos este dia.</p>
-          <a className="text-link" href="https://www.google.com/maps/search/?api=1&query=Monte+Fern%C3%A3o+Dias+Castro+Verde" target="_blank" rel="noreferrer">Como chegar ↗</a>
+          <p>Almodôvar — um cenário tranquilo, aberto e luminoso, exatamente como imaginámos este dia.</p>
+          <a className="text-link" href="https://www.google.com/maps/search/?api=1&query=Monte+Fern%C3%A3o+Dias+Almod%C3%B4var" target="_blank" rel="noreferrer">Como chegar ↗</a>
         </div>
       </section>
 
       <section className="section schedule-section">
         <div className="section-heading" data-reveal>
           <p className="kicker">O nosso dia</p>
-          <p className="script-title">Queremos celebrar contigo</p>
+          <p className="script-title">Queremos celebrar convosco</p>
           <span className="flourish" aria-hidden="true" />
         </div>
         <div className="tl" data-scroll>
