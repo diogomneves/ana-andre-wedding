@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 export const START_MUSIC_EVENT = "wedding:start-music";
 
-const YOUTUBE_ID = "XHMFFIzGHFk";
+const YOUTUBE_ID = "f4H7zhyuIog";
 
 type YTPlayer = {
   playVideo: () => void;

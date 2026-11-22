@@ -48,7 +48,9 @@ export default function PhotoCarousel({ photos }: { photos: Photo[] }) {
       <div className="carousel-track" ref={trackRef} tabIndex={0} onKeyDown={onKeyDown}>
         {photos.map((photo, i) => (
           <figure className={`carousel-slide${i === active ? " is-active" : ""}`} key={photo.src} aria-label={`Foto ${i + 1} de ${photos.length}`}>
-            <img src={photo.src} alt={photo.alt} loading="lazy" decoding="async" draggable={false} style={{ objectPosition: photo.position }} />
+            <div className="carousel-paper">
+              <img src={photo.src} alt={photo.alt} loading="lazy" decoding="async" draggable={false} style={{ objectPosition: photo.position }} />
+            </div>
           </figure>
         ))}
       </div>

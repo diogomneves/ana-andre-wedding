@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Parisienne, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 
@@ -12,6 +12,11 @@ export const metadata: Metadata = {
     title: "Ana & André — 14 maio 2027",
     description: "Marca este dia no teu calendário — Castro Verde.",
   },
+};
+
+export const viewport: Viewport = {
+  colorScheme: "only light",
+  themeColor: "#f1eee9",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

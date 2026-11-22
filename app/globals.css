@@ -1333,3 +1333,25 @@ body::before { background: url("/images/papel-claro.jpg") center top / 360px aut
 @keyframes storyKenBurns { from { scale: 1; translate: 1.5% 0; } to { scale: 1.12; translate: -2% -1.5%; } }
 @keyframes storyGlow { 0%, 100% { opacity: .35; } 50% { opacity: 1; } }
 @media (prefers-reduced-motion: reduce) { .story-float, .story-photo, .story-window::after { animation: none; } .story-pan { translate: none; } }
+
+
+/* Impede o "modo escuro forçado" (Samsung Internet, Chrome Android) de escurecer o convite */
+:root { color-scheme: only light; }
+html { background: #f1eee9; }
+@media (prefers-color-scheme: dark) {
+  :root { color-scheme: only light; }
+  html, body { background: #f1eee9; }
+}
+
+/* Carrossel: mesmo papel recortado e fita da fotografia "A nossa história continua" */
+.carousel-slide { padding: 0; background: none; box-shadow: none; filter: drop-shadow(0 12px 16px rgba(60,50,20,.24)); }
+.carousel-slide::before { top: -14px; width: 46%; height: auto; aspect-ratio: 499 / 180; rotate: -3deg; background: url("/images/fita.webp") center / 100% 100% no-repeat; box-shadow: none; opacity: .95; }
+.carousel-slide:nth-child(even)::before { rotate: 2deg; }
+.carousel-paper {
+  --r: 5px; position: relative; border: var(--r) solid transparent; padding: 11px;
+  background: linear-gradient(160deg, #fcf1dc, #f7e6c9 55%, #f1dcb9) border-box;
+  -webkit-mask: radial-gradient(var(--r), #000 calc(100% - .5px), #0000) 0 0 / calc(var(--r) * 2) calc(var(--r) * 2) round, linear-gradient(#000 0 0) padding-box;
+  mask: radial-gradient(var(--r), #000 calc(100% - .5px), #0000) 0 0 / calc(var(--r) * 2) calc(var(--r) * 2) round, linear-gradient(#000 0 0) padding-box;
+}
+.carousel-paper::after { content: ""; position: absolute; inset: 5px; border: 1px solid rgba(165,128,70,.32); pointer-events: none; }
+.carousel-slide img { filter: sepia(.32) saturate(.92) contrast(1.02); box-shadow: none; }
