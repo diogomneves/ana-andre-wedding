@@ -3,12 +3,14 @@
 import { FormEvent, useState } from "react";
 import { rsvpSchema } from "@/lib/rsvpSchema";
 
-type FieldErrors = { name?: string; guestCount?: string };
+type FieldErrors = { name?: string; phone?: string; email?: string; guestCount?: string };
 
 const RSVP_DEADLINE = "31.12.2026";
 
 export default function RsvpForm() {
   const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
   const [attendance, setAttendance] = useState<"yes" | "no">("yes");
   const [guestCount, setGuestCount] = useState(1);
   const [needsAccommodation, setNeedsAccommodation] = useState<"yes" | "no">("no");
@@ -24,6 +26,8 @@ export default function RsvpForm() {
 
     const payload = {
       name,
+      phone,
+      email,
       attendance: attendance === "yes",
       guestCount: attendance === "yes" ? guestCount : 0,
       needsAccommodation: attendance === "yes" && needsAccommodation === "yes",
@@ -34,7 +38,7 @@ export default function RsvpForm() {
     const parsed = rsvpSchema.safeParse(payload);
     if (!parsed.success) {
       const issues = parsed.error.flatten().fieldErrors;
-      setFieldErrors({ name: issues.name?.[0], guestCount: issues.guestCount?.[0] });
+      setFieldErrors({ name: issues.name?.[0], phone: issues.phone?.[0], email: issues.email?.[0], guestCount: issues.guestCount?.[0] });
       return;
     }
 
@@ -60,17 +64,17 @@ export default function RsvpForm() {
   if (state === "success") {
     return (
       <div className="success-card">
-        <p className="script-title">Obrigado ♡</p>
+        <p className="script-title">{attendance === "yes" ? "Obrigado ♡" : "Com carinho ♡"}</p>
         <h2>{attendance === "yes" ? "Presença confirmada" : "Resposta recebida"}</h2>
         <p>
           {attendance === "yes"
             ? "Estamos muito felizes por poder contar convosco neste dia."
-            : "Obrigado por nos dizerem. Vamos sentir a vossa falta."}
+            : "Agradecemos que nos tenham avisado. Vamos sentir a vossa falta, mas levamo-vos no coração neste dia."}
         </p>
         {attendance === "yes" && needsAccommodation === "yes" && (
           <p className="muted">Registámos também que precisam de alojamento.</p>
         )}
-        <a className="button primary" href="/ana-andre-2027.ics" download>Adicionar ao calendário</a>
+        {attendance === "yes" && <a className="button primary" href="/ana-andre-2027.ics" download>Adicionar ao calendário</a>}
       </div>
     );
   }
@@ -95,6 +99,18 @@ export default function RsvpForm() {
           <span>Nome(s) <span className="required-mark">*</span></span>
           <input type="text" value={name} onChange={(event) => setName(event.target.value)} placeholder="O teu nome ou o da família" />
           {fieldErrors.name && <p className="field-error">{fieldErrors.name}</p>}
+        </label>
+
+        <label className={fieldErrors.phone ? "field has-error" : "field"}>
+          <span>Telemóvel <span className="required-mark">*</span></span>
+          <input type="tel" inputMode="tel" autoComplete="tel" value={phone} onChange={(event) => setPhone(event.target.value)} placeholder="Para podermos falar contigo" />
+          {fieldErrors.phone && <p className="field-error">{fieldErrors.phone}</p>}
+        </label>
+
+        <label className={fieldErrors.email ? "field has-error" : "field"}>
+          <span>Email <small>(opcional)</small></span>
+          <input type="email" inputMode="email" autoComplete="email" value={email} onChange={(event) => setEmail(event.target.value)} placeholder="o.teu@email.com" />
+          {fieldErrors.email && <p className="field-error">{fieldErrors.email}</p>}
         </label>
 
         <fieldset>

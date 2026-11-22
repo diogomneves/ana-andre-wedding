@@ -7,6 +7,8 @@ export async function POST(request: Request) {
     const body = await request.json();
     const parsed = rsvpSchema.safeParse({
       name: String(body.name ?? ""),
+      phone: String(body.phone ?? ""),
+      email: String(body.email ?? ""),
       attendance: Boolean(body.attendance),
       guestCount: Number(body.guestCount),
       needsAccommodation: Boolean(body.needsAccommodation),
@@ -19,7 +21,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: firstIssue?.message || "Dados inválidos." }, { status: 400 });
     }
 
-    const { name, attendance, guestCount, needsAccommodation, dietary, message } = parsed.data;
+    const { name, phone, email, attendance, guestCount, needsAccommodation, dietary, message } = parsed.data;
 
     const gmailUser = process.env.GMAIL_USER;
     const gmailAppPassword = process.env.GMAIL_APP_PASSWORD;
@@ -34,6 +36,7 @@ export async function POST(request: Request) {
       auth: { user: gmailUser, pass: gmailAppPassword },
     });
 
+    const receivedAt = new Date().toLocaleString("pt-PT", { timeZone: "Europe/Lisbon", dateStyle: "short", timeStyle: "short" });
     const statusText = attendance ? `confirmou ${guestCount} ${guestCount === 1 ? "pessoa" : "pessoas"}` : "não poderá estar presente";
     const accommodationText = attendance ? (needsAccommodation ? "Sim" : "Não") : "—";
 
@@ -41,7 +44,8 @@ export async function POST(request: Request) {
       from: gmailUser,
       to: notifyEmail,
       subject: `Nova resposta RSVP — ${name}`,
-      html: `<p><strong>${escapeHtml(name)}</strong> ${statusText}.</p><p>Precisa de alojamento: ${accommodationText}</p><p>Restrições: ${escapeHtml(dietary || "Nenhuma indicada")}</p><p>Mensagem: ${escapeHtml(message || "—")}</p>`,
+      ...(email ? { replyTo: email } : {}),
+      html: `<p><strong>${escapeHtml(name)}</strong> ${statusText}.</p><p>Telemóvel: ${escapeHtml(phone)}</p><p>Email: ${escapeHtml(email || "—")}</p><p>Recebida em: ${escapeHtml(receivedAt)}</p><p>Precisa de alojamento: ${accommodationText}</p><p>Restrições: ${escapeHtml(dietary || "Nenhuma indicada")}</p><p>Mensagem: ${escapeHtml(message || "—")}</p>`,
     });
 
     return NextResponse.json({ ok: true });

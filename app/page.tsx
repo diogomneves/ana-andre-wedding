@@ -13,8 +13,9 @@ const ringsIcon = <><circle cx="9" cy="14.5" r="5" /><circle cx="15" cy="14.5" r
 const momentPhotos = [
   { src: "/images/silhueta.jpg", alt: "Silhueta de Ana e André junto ao mar", position: "42% 40%" },
   { src: "/images/abraco.jpg", alt: "Ana e André abraçados na praia", position: "80% 50%" },
-  { src: "/images/passeio.jpg", alt: "Ana e André de mãos dadas na praia", position: "60% 60%" },
-  { src: "/images/por-do-sol.jpg", alt: "Ana e André ao pôr do sol", position: "50% 50%" },
+  { src: "/images/gruta.jpg", alt: "Ana e André sentados numa gruta", position: "42% 50%" },
+  { src: "/images/caminho.jpg", alt: "Ana e André abraçados junto ao mar", position: "49% 50%" },
+  { src: "/images/arrabida-praia.jpg", alt: "Ana e André a passear na praia", position: "72% 50%" },
 ];
 
 const schedule = [
